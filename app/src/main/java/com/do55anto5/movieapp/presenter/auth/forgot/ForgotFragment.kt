@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentForgotBinding
 import com.do55anto5.movieapp.util.StateView
+import com.do55anto5.movieapp.util.isEmailValid
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,10 +49,10 @@ class ForgotFragment : Fragment() {
     private fun validateData() {
         val email = binding.editEmail.text.toString()
 
-        if (email.isNotEmpty()) {
+        if (email.isEmailValid()) {
            forgot(email)
         } else {
-            Toast.makeText(requireContext(), "Please fill field", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Invalid email address", Toast.LENGTH_SHORT).show()
         }
     }
 
