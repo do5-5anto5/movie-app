@@ -37,7 +37,7 @@ class ForgotFragment : Fragment() {
     }
 
     private fun initListeners() {
-        binding.btnRegister.setOnClickListener { validateData() }
+        binding.btnForgot.setOnClickListener { validateData() }
 
         Glide
             .with(requireContext())

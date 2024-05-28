@@ -36,7 +36,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun initListeners() {
-        binding.btnRegister.setOnClickListener { validateData() }
+        binding.btnLogin.setOnClickListener { validateData() }
 
         Glide
             .with(requireContext())
