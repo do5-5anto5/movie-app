@@ -5,7 +5,7 @@ import com.do55anto5.movieapp.domain.repository.auth.FirebaseAuthentication
 import com.google.firebase.auth.FirebaseAuth
 import kotlin.coroutines.suspendCoroutine
 
-class FirebaseAuthDataSourceImpl(
+class FirebaseAuthenticationImpl(
     private val firebaseAuth: FirebaseAuth
 ) : FirebaseAuthentication {
     override suspend fun login(email: String, password: String) {
