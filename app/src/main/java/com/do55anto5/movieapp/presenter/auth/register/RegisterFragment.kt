@@ -5,8 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentRegisterBinding
+import com.do55anto5.movieapp.util.StateView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -14,6 +19,8 @@ class RegisterFragment : Fragment() {
 
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: RegisterViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +32,50 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initListeners()
+    }
+
+    private fun initListeners() {
+        binding.btnRegister.setOnClickListener { validateData() }
+
+        Glide
+            .with(requireContext())
+            .load(R.drawable.loading)
+            .into(binding.progressLoading)
+    }
+
+    private fun validateData() {
+        val email = binding.editEmail.text.toString()
+        val password = binding.editPassword.text.toString()
+
+        if (email.isNotEmpty()) {
+            if (password.isNotEmpty()) {
+
+                register(email, password)
+
+            } else {
+                Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun register(email: String, password: String) {
+        viewModel.register(email, password).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {
+                    binding.progressLoading.isVisible = true
+                }
+                is StateView.Success -> {
+                    Toast.makeText(requireContext(), "Register success", Toast.LENGTH_SHORT).show()
+                }
+                is StateView.Error -> {
+                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
