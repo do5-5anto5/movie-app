@@ -3,7 +3,7 @@ package com.do55anto5.movieapp.domain.usecase.auth
 import com.do55anto5.movieapp.data.repository.auth.FirebaseAuthenticationImpl
 import javax.inject.Inject
 
-class Forgot @Inject constructor(
+class ForgotUseCase @Inject constructor(
     private val firebaseAuthenticationImpl: FirebaseAuthenticationImpl
 ) {
 

@@ -51,6 +51,7 @@
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="12dp"
             android:hint="@string/text_hint_edit_email_forgot_fragment"
+            style="@style/ThemeEditText"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
