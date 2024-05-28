@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentOnboardingBinding
 
 class OnboardingFragment : Fragment() {
@@ -22,6 +24,14 @@ class OnboardingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initListeners()
+    }
+
+    private fun initListeners() {
+        binding.btnStart.setOnClickListener {
+            findNavController().navigate(R.id.action_onboardingFragment_to_authentication)
+        }
     }
 
     override fun onDestroyView() {

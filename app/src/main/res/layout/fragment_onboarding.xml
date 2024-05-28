@@ -31,7 +31,7 @@
         tools:ignore="ContentDescription" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_start"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         style="@style/ThemePrimaryButton"
