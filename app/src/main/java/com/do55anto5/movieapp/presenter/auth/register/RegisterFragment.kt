@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentRegisterBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
     private var _binding: FragmentRegisterBinding? = null

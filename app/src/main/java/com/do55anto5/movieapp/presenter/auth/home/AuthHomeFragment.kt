@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentAuthHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AuthHomeFragment : Fragment() {
 
     private var _binding: FragmentAuthHomeBinding? = null

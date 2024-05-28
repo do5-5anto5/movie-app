@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
