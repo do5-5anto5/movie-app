@@ -14,6 +14,7 @@ import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentLoginBinding
 import com.do55anto5.movieapp.util.StateView
 import com.do55anto5.movieapp.util.hideKeyboard
+import com.do55anto5.movieapp.util.initToolbar
 import com.do55anto5.movieapp.util.isEmailValid
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,6 +36,9 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initToolbar(binding.toolbar)
+
         initListeners()
     }
 

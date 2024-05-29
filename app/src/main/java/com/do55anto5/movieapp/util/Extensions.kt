@@ -2,7 +2,21 @@ package com.do55anto5.movieapp.util
 
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import com.do55anto5.movieapp.R
+
+fun Fragment.initToolbar(toolbar: Toolbar, showBackIcon: Boolean = true) {
+    (activity as AppCompatActivity).setSupportActionBar(toolbar)
+    (activity as AppCompatActivity).title = ""
+    (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(showBackIcon)
+    (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back)
+
+    toolbar.setNavigationOnClickListener {
+        activity?.onBackPressedDispatcher?.onBackPressed()
+    }
+}
 
 fun Fragment.hideKeyboard() {
     val view = activity?.currentFocus
