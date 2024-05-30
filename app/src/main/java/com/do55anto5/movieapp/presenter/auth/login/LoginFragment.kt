@@ -1,21 +1,24 @@
 package com.do55anto5.movieapp.presenter.auth.login
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentLoginBinding
+import com.do55anto5.movieapp.presenter.MainActivity
+import com.do55anto5.movieapp.util.FirebaseHelper
 import com.do55anto5.movieapp.util.StateView
 import com.do55anto5.movieapp.util.hideKeyboard
 import com.do55anto5.movieapp.util.initToolbar
 import com.do55anto5.movieapp.util.isEmailValid
+import com.do55anto5.movieapp.util.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -66,10 +69,10 @@ class LoginFragment : Fragment() {
                 login(email, password)
 
             } else {
-                Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
+                showSnackBar(R.string.text_password_empty)
             }
         } else {
-            Toast.makeText(requireContext(), "Invalid email address", Toast.LENGTH_SHORT).show()
+            showSnackBar(R.string.text_email_invalid)
         }
     }
 
@@ -80,10 +83,14 @@ class LoginFragment : Fragment() {
                     binding.progressLoading.isVisible = true
                 }
                 is StateView.Success -> {
-                    Toast.makeText(requireContext(), "Login success", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
+                    requireActivity().finish()
                 }
                 is StateView.Error -> {
-                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                    binding.progressLoading.isVisible = false
+                    showSnackBar(
+                        message = FirebaseHelper.validError(error = stateView.message ?: "")
+                    )
                 }
             }
         }

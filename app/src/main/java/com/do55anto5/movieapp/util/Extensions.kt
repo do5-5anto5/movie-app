@@ -29,7 +29,7 @@ fun Fragment.hideKeyboard() {
 }
 
 fun Fragment.showSnackBar(
-    message: String,
+    message: Int,
     duration: Int = Snackbar.LENGTH_SHORT,
 ) {
     view?.let { Snackbar.make(it, message, duration).show() }

@@ -11,10 +11,12 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentRegisterBinding
+import com.do55anto5.movieapp.util.FirebaseHelper
 import com.do55anto5.movieapp.util.StateView
 import com.do55anto5.movieapp.util.hideKeyboard
 import com.do55anto5.movieapp.util.initToolbar
 import com.do55anto5.movieapp.util.isEmailValid
+import com.do55anto5.movieapp.util.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -61,10 +63,10 @@ class RegisterFragment : Fragment() {
                 register(email, password)
 
             } else {
-                Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
+                showSnackBar(R.string.text_password_empty)
             }
         } else {
-            Toast.makeText(requireContext(), "Invalid email address", Toast.LENGTH_SHORT).show()
+            showSnackBar(R.string.text_email_invalid)
         }
     }
 
@@ -78,7 +80,9 @@ class RegisterFragment : Fragment() {
                     Toast.makeText(requireContext(), "Register success", Toast.LENGTH_SHORT).show()
                 }
                 is StateView.Error -> {
-                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                    binding.progressLoading.isVisible = false
+                    showSnackBar(
+                        FirebaseHelper.validError(stateView.message ?: ""))
                 }
             }
         }

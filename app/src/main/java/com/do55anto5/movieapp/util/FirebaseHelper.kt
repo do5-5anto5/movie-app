@@ -29,6 +29,9 @@ class FirebaseHelper {
                 error.contains("Password should be at least 6 characters") -> {
                     R.string.strong_password_register_fragment
                 }
+                error.contains("The supplied auth credential is incorrect, malformed or has expired.") -> {
+                    R.string.invalid_credentials
+                }
                 else -> {
                     R.string.error_generic
                 }

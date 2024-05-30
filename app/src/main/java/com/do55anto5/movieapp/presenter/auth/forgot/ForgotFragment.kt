@@ -1,19 +1,20 @@
 package com.do55anto5.movieapp.presenter.auth.forgot
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentForgotBinding
+import com.do55anto5.movieapp.util.FirebaseHelper
 import com.do55anto5.movieapp.util.StateView
 import com.do55anto5.movieapp.util.initToolbar
 import com.do55anto5.movieapp.util.isEmailValid
+import com.do55anto5.movieapp.util.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -55,7 +56,7 @@ class ForgotFragment : Fragment() {
         if (email.isEmailValid()) {
            forgot(email)
         } else {
-            Toast.makeText(requireContext(), "Invalid email address", Toast.LENGTH_SHORT).show()
+            showSnackBar(R.string.text_email_invalid)
         }
     }
 
@@ -66,10 +67,12 @@ class ForgotFragment : Fragment() {
                     binding.progressLoading.isVisible = true
                 }
                 is StateView.Success -> {
-                    Toast.makeText(requireContext(), "Recovery email sent", Toast.LENGTH_SHORT).show()
+                    showSnackBar(R.string.email_sent_success_forgot_fragment)
                 }
                 is StateView.Error -> {
-                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                    showSnackBar(
+                        FirebaseHelper.validError(stateView.message ?: "")
+                    )
                 }
             }
         }
