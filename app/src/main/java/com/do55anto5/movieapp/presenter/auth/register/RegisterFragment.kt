@@ -1,5 +1,6 @@
 package com.do55anto5.movieapp.presenter.auth.register
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentRegisterBinding
+import com.do55anto5.movieapp.presenter.main.activity.MainActivity
 import com.do55anto5.movieapp.util.FirebaseHelper
 import com.do55anto5.movieapp.util.StateView
 import com.do55anto5.movieapp.util.hideKeyboard
@@ -77,7 +79,8 @@ class RegisterFragment : Fragment() {
                     binding.progressLoading.isVisible = true
                 }
                 is StateView.Success -> {
-                    Toast.makeText(requireContext(), "Register success", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
+                    requireActivity().finish()
                 }
                 is StateView.Error -> {
                     binding.progressLoading.isVisible = false
