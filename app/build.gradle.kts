@@ -5,6 +5,7 @@ plugins {
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -40,6 +41,10 @@ android {
 
     viewBinding {
         enable = true
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 
