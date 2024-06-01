@@ -65,11 +65,20 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.firebase.storage)
 
+    // OkHttp
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
     // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 
-    // Life Cycle
+    // Lifecycle
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
 
