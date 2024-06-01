@@ -5,11 +5,11 @@ import com.do55anto5.movieapp.data.model.MovieResponse
 
 interface MovieRepository {
 
-    suspend fun getGenres(apiKei: String, language: String?): GenresResponse
+    suspend fun getGenres(apiKey: String, language: String?): GenresResponse
 
     suspend fun getMoviesByGenre(
         apiKey: String,
         language: String?,
-        genreId: Int
+        genreId: Int?
     ): List<MovieResponse>
 }
