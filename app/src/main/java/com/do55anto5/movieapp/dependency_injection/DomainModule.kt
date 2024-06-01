@@ -1,7 +1,9 @@
 package com.do55anto5.movieapp.dependency_injection
 
 import com.do55anto5.movieapp.data.repository.auth.FirebaseAuthenticationImpl
+import com.do55anto5.movieapp.data.repository.movie.MovieRepositoryImpl
 import com.do55anto5.movieapp.domain.repository.auth.FirebaseAuthentication
+import com.do55anto5.movieapp.domain.repository.movie.MovieRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -16,4 +18,8 @@ abstract class DomainModule {
         firebaseAuthenticationImpl: FirebaseAuthenticationImpl
     ): FirebaseAuthentication
 
+    @Binds
+    abstract fun bindsMovieRepositoryImpl(
+        movieRepositoryImpl: MovieRepositoryImpl
+    ): MovieRepository
 }
