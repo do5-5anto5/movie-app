@@ -4,6 +4,7 @@ import com.do55anto5.movieapp.data.model.GenreResponse
 import com.do55anto5.movieapp.data.model.MovieResponse
 import com.do55anto5.movieapp.domain.model.Genre
 import com.do55anto5.movieapp.domain.model.Movie
+import com.do55anto5.movieapp.presenter.model.GenrePresentation
 
 fun GenreResponse.toDomain(): Genre {
     return Genre(
@@ -29,6 +30,14 @@ fun MovieResponse.toDomain(): Movie {
         voteAverage = voteAverage,
         voteCount = voteCount
 
+    )
+}
+
+fun Genre.toPresentation(): GenrePresentation {
+    return GenrePresentation(
+        id = id,
+        name = name,
+        movies = emptyList()
     )
 }
 

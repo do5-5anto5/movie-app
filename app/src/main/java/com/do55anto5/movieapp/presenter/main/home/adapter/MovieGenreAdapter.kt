@@ -42,6 +42,8 @@ class MovieGenreAdapter: ListAdapter<GenrePresentation, MovieGenreAdapter.MyView
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val genre = getItem(position)
 
+        holder.binding.genreName.text = genre.name
+
         val movieAdapter = MovieAdapter(holder.binding.root.context)
         val layoutManager = LinearLayoutManager(
             holder.binding.root.context, LinearLayoutManager.HORIZONTAL, false
