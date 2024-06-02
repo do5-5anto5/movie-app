@@ -9,7 +9,11 @@
         android:id="@+id/menu_home"
         android:name="com.do55anto5.movieapp.presenter.main.bottom_bar.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_menu_home_to_movieGenreFragment"
+            app:destination="@id/movieGenreFragment" />
+    </fragment>
     <fragment
         android:id="@+id/menu_download"
         android:name="com.do55anto5.movieapp.presenter.main.bottom_bar.download.DownloadFragment"
@@ -30,4 +34,13 @@
         android:name="com.do55anto5.movieapp.presenter.main.bottom_bar.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/movieGenreFragment"
+        android:name="com.do55anto5.movieapp.presenter.main.movie_genre.MovieGenreFragment"
+        android:label="fragment_movie_genre"
+        tools:layout="@layout/fragment_movie_genre" >
+        <argument
+            android:name="genreId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

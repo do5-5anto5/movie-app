@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.do55anto5.movieapp.databinding.GenreItemBinding
 import com.do55anto5.movieapp.presenter.model.GenrePresentation
 
-class MovieGenreAdapter: ListAdapter<GenrePresentation, MovieGenreAdapter.MyViewHolder>(
+class MovieGenreAdapter(
+    private val showAllListener: (Int) -> Unit
+): ListAdapter<GenrePresentation, MovieGenreAdapter.MyViewHolder>(
     DIFF_CALLBACK
 ) {
 
@@ -50,6 +52,10 @@ class MovieGenreAdapter: ListAdapter<GenrePresentation, MovieGenreAdapter.MyView
         val layoutManager = LinearLayoutManager(
             holder.binding.root.context, LinearLayoutManager.HORIZONTAL, false
         )
+
+        holder.binding.txtShowAll.setOnClickListener {
+            genre.id?.let { showAllListener(it) }
+        }
 
         holder.binding.rvMovies.layoutManager = layoutManager
         holder.binding.rvMovies.setHasFixedSize(true)
