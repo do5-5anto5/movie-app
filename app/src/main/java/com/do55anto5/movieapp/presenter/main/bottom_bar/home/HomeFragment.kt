@@ -1,4 +1,4 @@
-package com.do55anto5.movieapp.presenter.main.home
+package com.do55anto5.movieapp.presenter.main.bottom_bar.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.do55anto5.movieapp.databinding.FragmentHomeBinding
-import com.do55anto5.movieapp.presenter.main.home.adapter.MovieGenreAdapter
+import com.do55anto5.movieapp.presenter.main.bottom_bar.home.adapter.MovieGenreAdapter
 import com.do55anto5.movieapp.presenter.model.GenrePresentation
 import com.do55anto5.movieapp.util.StateView
 import dagger.hilt.android.AndroidEntryPoint

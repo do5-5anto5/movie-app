@@ -1,4 +1,4 @@
-package com.do55anto5.movieapp.presenter.main.home.adapter
+package com.do55anto5.movieapp.presenter.main.bottom_bar.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.do55anto5.movieapp.databinding.GenreItemBinding
 import com.do55anto5.movieapp.presenter.model.GenrePresentation
 
-class MovieGenreAdapter: ListAdapter<GenrePresentation, MovieGenreAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class MovieGenreAdapter: ListAdapter<GenrePresentation, MovieGenreAdapter.MyViewHolder>(
+    DIFF_CALLBACK
+) {
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<GenrePresentation>() {

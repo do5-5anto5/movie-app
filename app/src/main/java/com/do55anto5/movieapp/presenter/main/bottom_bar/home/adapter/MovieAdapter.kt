@@ -1,4 +1,4 @@
-package com.do55anto5.movieapp.presenter.main.home.adapter
+package com.do55anto5.movieapp.presenter.main.bottom_bar.home.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -7,27 +7,27 @@
 
     <fragment
         android:id="@+id/menu_home"
-        android:name="com.do55anto5.movieapp.presenter.main.home.HomeFragment"
+        android:name="com.do55anto5.movieapp.presenter.main.bottom_bar.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/menu_download"
-        android:name="com.do55anto5.movieapp.presenter.main.download.DownloadFragment"
+        android:name="com.do55anto5.movieapp.presenter.main.bottom_bar.download.DownloadFragment"
         android:label="fragment_download"
         tools:layout="@layout/fragment_download" />
     <fragment
         android:id="@+id/menu_favorite"
-        android:name="com.do55anto5.movieapp.presenter.main.favorite.FavoriteFragment"
+        android:name="com.do55anto5.movieapp.presenter.main.bottom_bar.favorite.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
     <fragment
         android:id="@+id/menu_profile"
-        android:name="com.do55anto5.movieapp.presenter.main.profile.ProfileFragment"
+        android:name="com.do55anto5.movieapp.presenter.main.bottom_bar.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/menu_search"
-        android:name="com.do55anto5.movieapp.presenter.main.search.SearchFragment"
+        android:name="com.do55anto5.movieapp.presenter.main.bottom_bar.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
 </navigation>

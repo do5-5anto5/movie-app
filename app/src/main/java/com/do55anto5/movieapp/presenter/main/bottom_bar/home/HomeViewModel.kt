@@ -1,4 +1,4 @@
-package com.do55anto5.movieapp.presenter.main.home
+package com.do55anto5.movieapp.presenter.main.bottom_bar.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
