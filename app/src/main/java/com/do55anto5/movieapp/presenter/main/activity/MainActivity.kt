@@ -7,7 +7,6 @@ import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import com.do55anto5.movieapp.BuildConfig
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,9 +24,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        BuildConfig.API_KEY
-
         initNavigation()
+
     }
 
     private fun initNavigation() {
@@ -38,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.bottomBar, navController)
 
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.bottomBar.isVisible =
                 destination.id == R.id.menu_home ||
                 destination.id == R.id.menu_search ||
