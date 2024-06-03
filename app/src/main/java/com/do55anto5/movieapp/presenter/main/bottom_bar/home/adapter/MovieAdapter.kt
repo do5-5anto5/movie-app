@@ -2,16 +2,19 @@ package com.do55anto5.movieapp.presenter.main.bottom_bar.home.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.do55anto5.movieapp.databinding.MovieItemBinding
+import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.domain.model.Movie
 
 class MovieAdapter(
-    private val context: Context
+    private val context: Context,
+    private val layoutInflater: Int
 ) : ListAdapter<Movie, MovieAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
@@ -34,13 +37,9 @@ class MovieAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(
-            MovieItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+        val view = LayoutInflater.from(parent.context).inflate(layoutInflater, parent, false)
+
+        return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -48,10 +47,15 @@ class MovieAdapter(
 
         Glide.with(context)
             .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
-            .into(holder.binding.movieImage)
+            .into(holder.movieImage)
     }
 
-    inner class MyViewHolder(val binding: MovieItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    inner class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+        val movieImage: ImageView
+
+        init {
+            movieImage = itemView.findViewById(R.id.movie_image)
+        }
+    }
 
 }

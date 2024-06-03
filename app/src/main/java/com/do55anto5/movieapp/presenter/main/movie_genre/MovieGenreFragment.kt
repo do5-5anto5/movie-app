@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentMovieGenreBinding
 import com.do55anto5.movieapp.presenter.main.bottom_bar.home.adapter.MovieAdapter
 import com.do55anto5.movieapp.util.StateView
@@ -66,7 +67,10 @@ class MovieGenreFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        movieAdapter = MovieAdapter(requireContext())
+        movieAdapter = MovieAdapter(
+            context = requireContext(),
+            layoutInflater = R.layout.movie_genre_item
+        )
         with(binding.recyclerMovies) {
             layoutManager = GridLayoutManager(requireContext(), 2)
             setHasFixedSize(true)
