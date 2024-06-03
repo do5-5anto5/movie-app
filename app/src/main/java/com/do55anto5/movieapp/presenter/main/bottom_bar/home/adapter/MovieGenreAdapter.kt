@@ -11,7 +11,7 @@ import com.do55anto5.movieapp.databinding.GenreItemBinding
 import com.do55anto5.movieapp.presenter.model.GenrePresentation
 
 class MovieGenreAdapter(
-    private val showAllListener: (Int) -> Unit
+    private val showAllListener: (Int, String) -> Unit
 ): ListAdapter<GenrePresentation, MovieGenreAdapter.MyViewHolder>(
     DIFF_CALLBACK
 ) {
@@ -59,7 +59,7 @@ class MovieGenreAdapter(
         )
 
         holder.binding.txtShowAll.setOnClickListener {
-            genre.id?.let { showAllListener(it) }
+            genre.id?.let { showAllListener(it, genre.name ?: "") }
         }
 
         holder.binding.rvMovies.layoutManager = layoutManager

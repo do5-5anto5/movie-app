@@ -41,6 +41,8 @@ class MovieGenreFragment : Fragment() {
 
         initToolbar(binding.toolbar)
 
+        binding.toolbarTitle.text = args.name
+
         initRecyclerView()
 
         getMoviesByGenre()
