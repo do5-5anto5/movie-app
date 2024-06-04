@@ -2,6 +2,7 @@ package com.do55anto5.movieapp.domain.repository.movie
 
 import com.do55anto5.movieapp.data.model.GenresResponse
 import com.do55anto5.movieapp.data.model.MovieResponse
+import com.do55anto5.movieapp.data.model.RemoteBasePagination
 
 interface MovieRepository {
 
@@ -12,4 +13,10 @@ interface MovieRepository {
         language: String?,
         genreId: Int?
     ): List<MovieResponse>
+
+    suspend fun searchMovies(
+        apiKey: String,
+        language: String?,
+        query: String?
+    ) : List<MovieResponse>
 }

@@ -16,6 +16,7 @@ import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentMovieGenreBinding
 import com.do55anto5.movieapp.presenter.main.bottom_bar.home.adapter.MovieAdapter
 import com.do55anto5.movieapp.util.StateView
+import com.do55anto5.movieapp.util.hideKeyboard
 import com.do55anto5.movieapp.util.initToolbar
 import com.ferfalk.simplesearchview.SimpleSearchView
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,13 +56,46 @@ class MovieGenreFragment : Fragment() {
 
         initRecyclerView()
 
-        getMoviesByGenre()
-
         initSearchView()
+
+        getMoviesByGenre()
+    }
+
+    private fun initRecyclerView() {
+        movieAdapter = MovieAdapter(
+            context = requireContext(),
+            layoutInflater = R.layout.movie_genre_item
+        )
+        with(binding.recyclerMovies) {
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            setHasFixedSize(true)
+            adapter = movieAdapter
+        }
+    }
+
+    private fun initSearchView() {
+        binding.simpleSearchView.setOnQueryTextListener(object : SimpleSearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+
+                hideKeyboard()
+                if (query.isNotEmpty()) searchMovies(query)
+
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                Log.d("SimpleSearchView", "Text changed:$newText")
+                return false
+            }
+
+            override fun onQueryTextCleared(): Boolean {
+                Log.d("SimpleSearchView", "Text cleared")
+                return false
+            }
+        })
     }
 
     private fun getMoviesByGenre() {
-
         viewModel.getMoviesByGenre(args.genreId).observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {
@@ -80,35 +114,26 @@ class MovieGenreFragment : Fragment() {
         }
     }
 
-    private fun initRecyclerView() {
-        movieAdapter = MovieAdapter(
-            context = requireContext(),
-            layoutInflater = R.layout.movie_genre_item
-        )
-        with(binding.recyclerMovies) {
-            layoutManager = GridLayoutManager(requireContext(), 2)
-            setHasFixedSize(true)
-            adapter = movieAdapter
+    private fun searchMovies(query: String?) {
+        viewModel.searchMovies(query).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {
+                    binding.recyclerMovies.isVisible = false
+                    binding.progressBar.isVisible = true
+                }
+
+                is StateView.Success -> {
+                    binding.progressBar.isVisible = false
+                    movieAdapter.submitList(stateView.data)
+                    binding.recyclerMovies.isVisible = true
+                }
+
+                is StateView.Error -> {
+                    binding.progressBar.isVisible = false
+                    binding.recyclerMovies.isVisible = true
+                }
+            }
         }
-    }
-
-    private fun initSearchView() {
-        binding.simpleSearchView.setOnQueryTextListener(object : SimpleSearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                Log.d("SimpleSearchView", "Submit:$query")
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                Log.d("SimpleSearchView", "Text changed:$newText")
-                return false
-            }
-
-            override fun onQueryTextCleared(): Boolean {
-                Log.d("SimpleSearchView", "Text cleared")
-                return false
-            }
-        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
