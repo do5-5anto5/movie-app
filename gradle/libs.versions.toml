@@ -3,6 +3,7 @@ agp = "8.4.1"
 coreSplashscreen = "1.0.1"
 firebaseBom = "33.1.0"
 githubGlide = "4.16.0"
+githubSimplesearchview = "0.2.1"
 hiltAndroid = "2.48.1"
 hiltAndroidCompiler = "2.48.1"
 kotlin = "1.9.0"
@@ -33,6 +34,7 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 firebase-database = { module = "com.google.firebase:firebase-database" }
 firebase-storage = { module = "com.google.firebase:firebase-storage" }
 github-glide = { module = "com.github.bumptech.glide:glide", version.ref = "githubGlide" }
+github-simplesearchview = { module = "com.github.Ferfalk:SimpleSearchView", version.ref = "githubSimplesearchview" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompiler" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }

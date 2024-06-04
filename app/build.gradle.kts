@@ -66,6 +66,9 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.firebase.storage)
 
+    // Search View https://github.com/Ferfalk/SimpleSearchView
+    implementation(libs.github.simplesearchview)
+
     // OkHttp
     implementation(platform(libs.okhttp.bom))
     implementation(libs.okhttp)
