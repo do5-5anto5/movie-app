@@ -63,8 +63,11 @@
     <string name="text_button_forgot_fragment">Recuperar conta</string>
     <string name="email_sent_success_forgot_fragment">Email de recuperação enviado</string>
     
-    <!--Movie Item-->
+    <!--    Movie Item-->
     <string name="text_see_all_genre_item">Ver todos</string>
+
+    <!--    MovieGenreFragment-->
+    <string name="text_search_hint">Buscar</string>
     
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
