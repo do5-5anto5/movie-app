@@ -3,7 +3,6 @@ package com.do55anto5.movieapp.data.repository.movie
 import com.do55anto5.movieapp.data.api.ServiceApi
 import com.do55anto5.movieapp.data.model.GenresResponse
 import com.do55anto5.movieapp.data.model.MovieResponse
-import com.do55anto5.movieapp.data.model.RemoteBasePagination
 import com.do55anto5.movieapp.domain.repository.movie.MovieRepository
 import javax.inject.Inject
 
@@ -38,6 +37,18 @@ class MovieRepositoryImpl @Inject constructor(
             language = language,
             query = query
         ).results ?: emptyList()
+    }
+
+    override suspend fun getMovieDetails(
+        apiKey: String,
+        language: String?,
+        movieId: Int?
+    ): MovieResponse {
+        return serviceApi.getMovieDetails(
+            apiKey = apiKey,
+            language = language,
+            movieId = movieId
+        )
     }
 
 

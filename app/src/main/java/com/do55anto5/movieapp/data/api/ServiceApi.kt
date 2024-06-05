@@ -4,6 +4,7 @@ import com.do55anto5.movieapp.data.model.GenresResponse
 import com.do55anto5.movieapp.data.model.MovieResponse
 import com.do55anto5.movieapp.data.model.RemoteBasePagination
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ServiceApi {
@@ -27,4 +28,11 @@ interface ServiceApi {
         @Query("language") language: String?,
         @Query("query") query: String?
     ) : RemoteBasePagination<List<MovieResponse>>
+
+    @GET("movie/{movie_id}")
+    suspend fun getMovieDetails(
+        @Path("movie_id") movieId: Int?,
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String?
+    ) : MovieResponse
 }

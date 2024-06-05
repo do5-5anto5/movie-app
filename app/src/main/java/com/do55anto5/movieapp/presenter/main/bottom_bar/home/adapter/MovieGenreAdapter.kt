@@ -11,7 +11,8 @@ import com.do55anto5.movieapp.databinding.GenreItemBinding
 import com.do55anto5.movieapp.presenter.model.GenrePresentation
 
 class MovieGenreAdapter(
-    private val showAllListener: (Int, String) -> Unit
+    private val showAllListener: (Int, String) -> Unit,
+    private val movieClickListener: (Int?) -> Unit
 ): ListAdapter<GenrePresentation, MovieGenreAdapter.MyViewHolder>(
     DIFF_CALLBACK
 ) {
@@ -51,7 +52,8 @@ class MovieGenreAdapter(
 
         val movieAdapter = MovieAdapter(
             context = holder.binding.root.context,
-            layoutInflater = R.layout.movie_item
+            layoutInflater = R.layout.movie_item,
+            movieClickListener = movieClickListener
         )
 
         val layoutManager = LinearLayoutManager(

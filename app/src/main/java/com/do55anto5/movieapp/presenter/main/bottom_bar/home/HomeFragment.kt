@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.do55anto5.movieapp.MainGraphDirections
 import com.do55anto5.movieapp.databinding.FragmentHomeBinding
 import com.do55anto5.movieapp.presenter.main.bottom_bar.home.adapter.MovieGenreAdapter
 import com.do55anto5.movieapp.presenter.model.GenrePresentation
@@ -77,8 +78,10 @@ class HomeFragment : Fragment() {
                     }
 
                     is StateView.Success -> {
-                        genresMutableList[index] = genre.copy(movies = stateView.data
-                            ?.take(5))
+                        genresMutableList[index] = genre.copy(
+                            movies = stateView.data
+                                ?.take(5)
+                        )
                         lifecycleScope.launch {
                             delay(1000)
                             genreMovieAdapter.submitList(genresMutableList)
@@ -95,11 +98,19 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        genreMovieAdapter = MovieGenreAdapter { genreId, genreName ->
-            val action = HomeFragmentDirections.actionMenuHomeToMovieGenreFragment(genreId, genreName)
-
-            findNavController().navigate(action)
-        }
+        genreMovieAdapter = MovieGenreAdapter(
+            showAllListener = { genreId, genreName ->
+                val action =
+                    HomeFragmentDirections.actionMenuHomeToMovieGenreFragment(genreId, genreName)
+                findNavController().navigate(action)
+            },
+            movieClickListener = { movieId ->
+                movieId?.let {
+                    val action = MainGraphDirections.actionGlobalMovieDetailsFragment(movieId)
+                    findNavController().navigate(action)
+                }
+            }
+        )
         with(binding.recyclerGenres) {
             setHasFixedSize(true)
             adapter = genreMovieAdapter
