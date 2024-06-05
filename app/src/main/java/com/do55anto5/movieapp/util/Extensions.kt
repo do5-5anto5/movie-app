@@ -8,11 +8,13 @@ import androidx.fragment.app.Fragment
 import com.do55anto5.movieapp.R
 import com.google.android.material.snackbar.Snackbar
 
-fun Fragment.initToolbar(toolbar: Toolbar, showBackIcon: Boolean = true) {
+fun Fragment.initToolbar(toolbar: Toolbar, showBackIcon: Boolean = true, lightIcon: Boolean = false) {
     (activity as AppCompatActivity).setSupportActionBar(toolbar)
     (activity as AppCompatActivity).title = ""
     (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(showBackIcon)
-    (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back)
+
+    val iconBack = if (lightIcon) R.drawable.ic_back_white else R.drawable.ic_back
+    (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(iconBack)
 
     toolbar.setNavigationOnClickListener {
         activity?.onBackPressedDispatcher?.onBackPressed()
