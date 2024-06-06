@@ -1,7 +1,9 @@
 package com.do55anto5.movieapp.data.mapper
 
+import com.do55anto5.movieapp.data.model.CountryResponse
 import com.do55anto5.movieapp.data.model.GenreResponse
 import com.do55anto5.movieapp.data.model.MovieResponse
+import com.do55anto5.movieapp.domain.model.Country
 import com.do55anto5.movieapp.domain.model.Genre
 import com.do55anto5.movieapp.domain.model.Movie
 import com.do55anto5.movieapp.presenter.model.GenrePresentation
@@ -28,8 +30,8 @@ fun MovieResponse.toDomain(): Movie {
         title = title,
         video = video,
         voteAverage = voteAverage,
-        voteCount = voteCount
-
+        voteCount = voteCount,
+        productionCountries = productionCountries?.map { it.toDomain() }
     )
 }
 
@@ -41,3 +43,6 @@ fun Genre.toPresentation(): GenrePresentation {
     )
 }
 
+fun CountryResponse.toDomain() = Country(
+    name = name
+)
