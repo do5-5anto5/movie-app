@@ -64,6 +64,25 @@ class MovieDetailsFragment : Fragment() {
         }
     }
 
+    private fun getCredits() {
+        viewModel.getCredits(movieId = args.movieId).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {
+                }
+
+                is StateView.Success -> {
+
+                }
+
+                is StateView.Error -> {
+                }
+                else -> {
+
+                }
+            }
+        }
+    }
+
     private fun configData(movie: Movie?) {
         Glide.with(requireContext())
             .load("https://image.tmdb.org/t/p/w500${movie?.posterPath}")
