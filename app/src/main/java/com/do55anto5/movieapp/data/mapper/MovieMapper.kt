@@ -1,11 +1,15 @@
 package com.do55anto5.movieapp.data.mapper
 
 import com.do55anto5.movieapp.data.model.CountryResponse
+import com.do55anto5.movieapp.data.model.CreditsResponse
 import com.do55anto5.movieapp.data.model.GenreResponse
 import com.do55anto5.movieapp.data.model.MovieResponse
+import com.do55anto5.movieapp.data.model.PersonResponse
 import com.do55anto5.movieapp.domain.model.Country
+import com.do55anto5.movieapp.domain.model.Credits
 import com.do55anto5.movieapp.domain.model.Genre
 import com.do55anto5.movieapp.domain.model.Movie
+import com.do55anto5.movieapp.domain.model.Person
 import com.do55anto5.movieapp.presenter.model.GenrePresentation
 
 fun GenreResponse.toDomain(): Genre {
@@ -43,6 +47,31 @@ fun Genre.toPresentation(): GenrePresentation {
     )
 }
 
-fun CountryResponse.toDomain() = Country(
-    name = name
-)
+fun CountryResponse.toDomain(): Country {
+    return Country(
+        name = name
+    )
+}
+
+fun PersonResponse.toDomain(): Person {
+    return Person(
+        adult = adult,
+        gender = gender,
+        id = id,
+        knownForDepartment = knownForDepartment,
+        name = name,
+        originalName = originalName,
+        popularity = popularity,
+        profilePath = profilePath,
+        castId = castId,
+        character = character,
+        creditId = creditId,
+        order = order
+    )
+}
+
+fun CreditsResponse.toDomain(): Credits {
+    return Credits(
+        cast = cast?.map { it.toDomain() }
+    )
+}
