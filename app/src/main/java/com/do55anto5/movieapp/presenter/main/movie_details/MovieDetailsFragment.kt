@@ -70,19 +70,18 @@ class MovieDetailsFragment : Fragment() {
             .error(R.drawable.bg_shadow)
             .into(binding.imageMovie)
 
-        with(binding) {
-
-            textMovie.text = movie?.title
-
-            textVoteAverage.text = String.format(Locale.ROOT,"%.1f", movie?.voteAverage)
-
             val originalFormat = DateFormat.getDateInstance(DateFormat.SHORT, Locale.ROOT)
             val date = originalFormat.parse(movie?.releaseDate ?: "")
             val yearFormat = SimpleDateFormat("yyyy", Locale.ROOT)
             val year = date?.let { yearFormat.format(it) }
-            textReleaseDate.text = year
 
+        with(binding) {
+            textMovie.text = movie?.title
+            textVoteAverage.text = String.format(Locale.ROOT,"%.1f", movie?.voteAverage)
+            textReleaseDate.text = year
             textProductionCountry.text = movie?.productionCountries?.get(0)?.name ?: ""
+            val genres = movie?.genres?.map { it.name }?.joinToString(", ")
+            textGenres.text = getString(R.string.text_all_movie_genres, genres)
         }
     }
 

@@ -69,6 +69,13 @@
     <!--    MovieGenreFragment-->
     <string name="text_search_hint">Buscar</string>
     
+    <!--    MovieDetailsFragment-->
+    <string name="text_mock_classification_movie_details_fragment">13+</string>
+    <string name="text_subtitle">Subtitle</string>
+    <string name="button_text_play">Play</string>
+    <string name="button_text_download">Download</string>
+    <string name="text_all_movie_genres">Genre: %1$s</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
