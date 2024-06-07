@@ -76,12 +76,17 @@ class MovieDetailsFragment : Fragment() {
             val year = date?.let { yearFormat.format(it) }
 
         with(binding) {
+
             textMovie.text = movie?.title
+
             textVoteAverage.text = String.format(Locale.ROOT,"%.1f", movie?.voteAverage)
             textReleaseDate.text = year
             textProductionCountry.text = movie?.productionCountries?.get(0)?.name ?: ""
+
             val genres = movie?.genres?.map { it.name }?.joinToString(", ")
             textGenres.text = getString(R.string.text_all_movie_genres, genres)
+
+            textOverview.text = movie?.overview
         }
     }
 
