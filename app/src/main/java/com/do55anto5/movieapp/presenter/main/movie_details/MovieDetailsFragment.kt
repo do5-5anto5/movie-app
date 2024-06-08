@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentMovieDetailsBinding
 import com.do55anto5.movieapp.domain.model.Movie
+import com.do55anto5.movieapp.presenter.main.movie_details.adapter.CastAdapter
 import com.do55anto5.movieapp.util.StateView
 import com.do55anto5.movieapp.util.initToolbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +30,8 @@ class MovieDetailsFragment : Fragment() {
 
     private val args: MovieDetailsFragmentArgs by navArgs()
 
+    private lateinit var castAdapter: CastAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,6 +47,8 @@ class MovieDetailsFragment : Fragment() {
         initToolbar(binding.toolbar, lightIcon = true)
 
         getMovieDetails()
+
+        initRecyclerViewCredits()
     }
 
     private fun getMovieDetails() {
@@ -57,10 +63,25 @@ class MovieDetailsFragment : Fragment() {
 
                 is StateView.Error -> {
                 }
+
                 else -> {
 
                 }
             }
+        }
+    }
+
+    private fun initRecyclerViewCredits() {
+        castAdapter = CastAdapter()
+
+        with(binding.recyclerCast) {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+            adapter = castAdapter
         }
     }
 
@@ -71,11 +92,12 @@ class MovieDetailsFragment : Fragment() {
                 }
 
                 is StateView.Success -> {
-
+                    castAdapter.submitList(stateView.data?.cast)
                 }
 
                 is StateView.Error -> {
                 }
+
                 else -> {
 
                 }
@@ -89,16 +111,16 @@ class MovieDetailsFragment : Fragment() {
             .error(R.drawable.bg_shadow)
             .into(binding.imageMovie)
 
-            val originalFormat = DateFormat.getDateInstance(DateFormat.SHORT, Locale.ROOT)
-            val date = originalFormat.parse(movie?.releaseDate ?: "")
-            val yearFormat = SimpleDateFormat("yyyy", Locale.ROOT)
-            val year = date?.let { yearFormat.format(it) }
+        val originalFormat = DateFormat.getDateInstance(DateFormat.SHORT, Locale.ROOT)
+        val date = originalFormat.parse(movie?.releaseDate ?: "")
+        val yearFormat = SimpleDateFormat("yyyy", Locale.ROOT)
+        val year = date?.let { yearFormat.format(it) }
 
         with(binding) {
 
             textMovie.text = movie?.title
 
-            textVoteAverage.text = String.format(Locale.ROOT,"%.1f", movie?.voteAverage)
+            textVoteAverage.text = String.format(Locale.ROOT, "%.1f", movie?.voteAverage)
             textReleaseDate.text = year
             textProductionCountry.text = movie?.productionCountries?.get(0)?.name ?: ""
 
@@ -107,6 +129,8 @@ class MovieDetailsFragment : Fragment() {
 
             textOverview.text = movie?.overview
         }
+
+        getCredits()
     }
 
     override fun onDestroyView() {
