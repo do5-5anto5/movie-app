@@ -13,8 +13,10 @@ import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentMovieDetailsBinding
 import com.do55anto5.movieapp.domain.model.Movie
 import com.do55anto5.movieapp.presenter.main.movie_details.adapter.CastAdapter
+import com.do55anto5.movieapp.presenter.main.movie_details.adapter.ViewPagerAdapter
 import com.do55anto5.movieapp.util.StateView
 import com.do55anto5.movieapp.util.initToolbar
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -49,6 +51,33 @@ class MovieDetailsFragment : Fragment() {
         getMovieDetails()
 
         initRecyclerViewCredits()
+
+        configTabLayout()
+    }
+
+    private fun configTabLayout() {
+        val adapter = ViewPagerAdapter(requireActivity())
+        binding.viewPager.adapter = adapter
+
+        adapter.addFragment(
+            fragment = TrailersFragment(),
+            title = R.string.title_trailers_tab_layout,
+        )
+        adapter.addFragment(
+            fragment = SimilarFragment(),
+            title = R.string.title_similar_tab_layout,
+        )
+        adapter.addFragment(
+            fragment = CommentsFragment(),
+            title = R.string.title_trailers_tab_layout,
+        )
+
+        binding.viewPager.offscreenPageLimit = adapter.itemCount
+        TabLayoutMediator(
+            binding.tabs, binding.viewPager) { tab, position ->
+            tab.text = getString(adapter.getTitle(position))
+        }.attach()
+
     }
 
     private fun getMovieDetails() {
