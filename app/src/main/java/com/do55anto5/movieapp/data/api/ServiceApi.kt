@@ -43,4 +43,11 @@ interface ServiceApi {
         @Query("api_key") apiKey: String?,
         @Query("language") language: String?
     ) : CreditsResponse
+
+    @GET("movie/{movie_id}/similar")
+    suspend fun getSimilar(
+        @Path("movie_id") movieId: Int?,
+        @Query("api_key") apiKey: String?,
+        @Query("language") language: String?
+    ) : RemoteBasePagination<List<MovieResponse>>
 }

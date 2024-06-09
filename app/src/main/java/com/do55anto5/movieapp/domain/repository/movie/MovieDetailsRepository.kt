@@ -17,4 +17,10 @@ interface MovieDetailsRepository {
         movieId: Int?
     ) : CreditsResponse
 
+    suspend fun getSimilar(
+        apiKey: String?,
+        language: String?,
+        movieId: Int?
+    ) : List<MovieResponse>
+
 }
