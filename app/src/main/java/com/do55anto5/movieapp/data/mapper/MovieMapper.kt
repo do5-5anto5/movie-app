@@ -1,14 +1,18 @@
 package com.do55anto5.movieapp.data.mapper
 
+import com.do55anto5.movieapp.data.model.AuthorDetailsResponse
 import com.do55anto5.movieapp.data.model.CountryResponse
 import com.do55anto5.movieapp.data.model.CreditsResponse
 import com.do55anto5.movieapp.data.model.GenreResponse
 import com.do55anto5.movieapp.data.model.MovieResponse
+import com.do55anto5.movieapp.data.model.MovieReviewResponse
 import com.do55anto5.movieapp.data.model.PersonResponse
+import com.do55anto5.movieapp.domain.model.AuthorDetails
 import com.do55anto5.movieapp.domain.model.Country
 import com.do55anto5.movieapp.domain.model.Credits
 import com.do55anto5.movieapp.domain.model.Genre
 import com.do55anto5.movieapp.domain.model.Movie
+import com.do55anto5.movieapp.domain.model.MovieReview
 import com.do55anto5.movieapp.domain.model.Person
 import com.do55anto5.movieapp.presenter.model.GenrePresentation
 
@@ -73,5 +77,26 @@ fun PersonResponse.toDomain(): Person {
 fun CreditsResponse.toDomain(): Credits {
     return Credits(
         cast = cast?.map { it.toDomain() }
+    )
+}
+
+fun AuthorDetailsResponse.toDomain(): AuthorDetails {
+    return AuthorDetails(
+        name = name,
+        username = username,
+        avatarPath = "https://image.tmdb.org/t/p/w500${avatarPath}",
+        rating = rating
+    )
+}
+
+fun MovieReviewResponse.toDomain(): MovieReview {
+    return MovieReview(
+        author = author,
+        authorDetails = authorDetailsResponse?.toDomain(),
+        content = content,
+        createdAt = createdAt,
+        id = id,
+        updatedAt = updatedAt,
+        url = url,
     )
 }
