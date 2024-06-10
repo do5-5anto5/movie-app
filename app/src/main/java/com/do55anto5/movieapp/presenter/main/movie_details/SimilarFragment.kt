@@ -54,7 +54,7 @@ class SimilarFragment : Fragment() {
     private fun initRecyclerView() {
         movieAdapter = MovieAdapter(
             context = requireContext(),
-            layoutInflater = R.layout.movie_item,
+            layoutInflater = R.layout.movie_genre_item,
             movieClickListener = {
 
             }
