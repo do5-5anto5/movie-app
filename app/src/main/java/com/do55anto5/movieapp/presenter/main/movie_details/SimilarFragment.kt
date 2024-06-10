@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.do55anto5.movieapp.MainGraphDirections
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentSimilarBinding
 import com.do55anto5.movieapp.presenter.main.bottom_bar.home.adapter.MovieAdapter
@@ -55,8 +57,11 @@ class SimilarFragment : Fragment() {
         movieAdapter = MovieAdapter(
             context = requireContext(),
             layoutInflater = R.layout.movie_genre_item,
-            movieClickListener = {
-
+            movieClickListener = { movieId ->
+                movieId?.let {
+                    val action = MainGraphDirections.actionGlobalMovieDetailsFragment(movieId)
+                    findNavController().navigate(action)
+                }
             }
         )
 
