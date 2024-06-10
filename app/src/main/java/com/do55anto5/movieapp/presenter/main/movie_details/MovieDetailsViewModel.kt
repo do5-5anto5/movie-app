@@ -1,5 +1,7 @@
 package com.do55anto5.movieapp.presenter.main.movie_details
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.do55anto5.movieapp.BuildConfig
@@ -17,6 +19,9 @@ class MovieDetailsViewModel @Inject constructor(
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
     private val getCreditsUseCase: GetCreditsUseCase
 ) : ViewModel() {
+
+    private val _movieId = MutableLiveData(0)
+    val movieId: LiveData<Int> = _movieId
 
     fun getMovieDetails(movieId: Int?) = liveData(Dispatchers.IO) {
         try {
@@ -64,4 +69,7 @@ class MovieDetailsViewModel @Inject constructor(
         }
     }
 
+    fun setMovieId(movieId: Int) {
+        _movieId.value = movieId
+    }
 }
