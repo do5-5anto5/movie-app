@@ -3,6 +3,7 @@ package com.do55anto5.movieapp.data.repository.movie
 import com.do55anto5.movieapp.data.api.ServiceApi
 import com.do55anto5.movieapp.data.model.CreditsResponse
 import com.do55anto5.movieapp.data.model.MovieResponse
+import com.do55anto5.movieapp.data.model.MovieReviewResponse
 import com.do55anto5.movieapp.domain.repository.movie.MovieDetailsRepository
 import javax.inject.Inject
 
@@ -39,6 +40,18 @@ class MovieDetailsRepositoryImpl @Inject constructor(
         movieId: Int?
     ): List<MovieResponse> {
         return serviceApi.getSimilar(
+            movieId = movieId,
+            apiKey = apiKey,
+            language = language
+        ).results ?: emptyList()
+    }
+
+    override suspend fun getMovieReviews(
+        apiKey: String?,
+        language: String?,
+        movieId: Int?
+    ): List<MovieReviewResponse> {
+        return serviceApi.getMovieReviews(
             movieId = movieId,
             apiKey = apiKey,
             language = language
