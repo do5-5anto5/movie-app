@@ -1,4 +1,4 @@
-package com.do55anto5.movieapp.presenter.main.movie_details
+package com.do55anto5.movieapp.presenter.main.movie_details.similar
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData

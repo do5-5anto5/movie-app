@@ -1,4 +1,4 @@
-package com.do55anto5.movieapp.presenter.main.movie_details
+package com.do55anto5.movieapp.presenter.main.movie_details.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,8 +12,11 @@ import com.bumptech.glide.Glide
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentMovieDetailsBinding
 import com.do55anto5.movieapp.domain.model.Movie
+import com.do55anto5.movieapp.presenter.main.movie_details.similar.SimilarFragment
+import com.do55anto5.movieapp.presenter.main.movie_details.trailers.TrailersFragment
 import com.do55anto5.movieapp.presenter.main.movie_details.adapter.CastAdapter
 import com.do55anto5.movieapp.presenter.main.movie_details.adapter.ViewPagerAdapter
+import com.do55anto5.movieapp.presenter.main.movie_details.comments.CommentsFragment
 import com.do55anto5.movieapp.util.StateView
 import com.do55anto5.movieapp.util.initToolbar
 import com.google.android.material.tabs.TabLayoutMediator

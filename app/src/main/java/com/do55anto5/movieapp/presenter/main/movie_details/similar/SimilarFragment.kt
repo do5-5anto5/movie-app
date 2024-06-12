@@ -1,4 +1,4 @@
-package com.do55anto5.movieapp.presenter.main.movie_details
+package com.do55anto5.movieapp.presenter.main.movie_details.similar
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +13,7 @@ import com.do55anto5.movieapp.MainGraphDirections
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentSimilarBinding
 import com.do55anto5.movieapp.presenter.main.bottom_bar.home.adapter.MovieAdapter
+import com.do55anto5.movieapp.presenter.main.movie_details.details.MovieDetailsViewModel
 import com.do55anto5.movieapp.util.StateView
 import dagger.hilt.android.AndroidEntryPoint
 
