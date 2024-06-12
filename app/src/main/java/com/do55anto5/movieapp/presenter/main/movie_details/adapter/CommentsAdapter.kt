@@ -46,8 +46,8 @@ class CommentsAdapter : ListAdapter<MovieReview, CommentsAdapter.MyViewHolder>(D
         val review = getItem(position)
 
         Glide.with(holder.binding.root.context)
-            .load(review.authorDetails?.avatarPath)
-            .error(R.drawable.bg_shadow)
+            .load("https://image.tmdb.org/t/p/w500${review.authorDetails?.avatarPath}")
+            .error(R.drawable.ic_mock_user)
             .into(holder.binding.imageUser)
 
         with(holder.binding) {

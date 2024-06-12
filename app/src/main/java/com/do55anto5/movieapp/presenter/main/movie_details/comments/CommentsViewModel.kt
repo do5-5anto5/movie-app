@@ -16,7 +16,7 @@ class CommentsViewModel @Inject constructor(
     private val getCommentsUseCase: GetMovieReviewsUseCase
 ) : ViewModel() {
 
-    fun getSimilar(movieId: Int?) = liveData(Dispatchers.IO) {
+    fun getMovieReviews(movieId: Int?) = liveData(Dispatchers.IO) {
         try {
 
             emit(StateView.Loading())
