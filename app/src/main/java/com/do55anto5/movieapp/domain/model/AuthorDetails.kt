@@ -12,5 +12,5 @@ data class AuthorDetails(
 
     val avatarPath: String?,
 
-    val rating: String?
+    val rating: Int?
 ) : Parcelable

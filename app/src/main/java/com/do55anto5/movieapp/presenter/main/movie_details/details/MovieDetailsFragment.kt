@@ -75,7 +75,7 @@ class MovieDetailsFragment : Fragment() {
         )
         adapter.addFragment(
             fragment = CommentsFragment(),
-            title = R.string.title_trailers_tab_layout,
+            title = R.string.title_comments_tab_layout,
         )
 
         binding.viewPager.offscreenPageLimit = adapter.itemCount
