@@ -58,19 +58,12 @@
         </style>
 
         <style name="SearchViewThemeScreen" parent="Theme.AppCompat.Light.NoActionBar">
-            <!--        erase button text color-->
             <item name="colorControlNormal">#BDBDBD</item>
-            <!--        query hint color-->
             <item name="android:textColorHint">#BDBDBD</item>
-            <!--        typed text color-->
             <item name="android:editTextColor">#212121</item>
-            <!--        text font-->
             <item name="android:fontFamily">@font/urbanist_400</item>
-            <!--        text size-->
             <item name="android:textSize">14sp</item>
-            <!--        cursor color-->
-            <item name="colorControlActivated">@color/color_default</item>
-            <!--        input type-->
+            <item name="colorSecondary">#212121</item>
             <item name="android:inputType">textCapSentences</item>
         </style>
 
