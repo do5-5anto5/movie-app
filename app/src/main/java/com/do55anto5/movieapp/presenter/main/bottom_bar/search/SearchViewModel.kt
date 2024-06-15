@@ -1,13 +1,16 @@
 package com.do55anto5.movieapp.presenter.main.bottom_bar.search
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.do55anto5.movieapp.BuildConfig
+import com.do55anto5.movieapp.domain.model.Movie
 import com.do55anto5.movieapp.domain.usecase.movie.SearchMoviesUseCase
 import com.do55anto5.movieapp.util.Constants
 import com.do55anto5.movieapp.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import javax.inject.Inject
 
@@ -16,26 +19,34 @@ class SearchViewModel @Inject constructor(
     private val searchMoviesUseCase: SearchMoviesUseCase
 ) : ViewModel() {
 
-    fun searchMovies(query: String?) = liveData(Dispatchers.IO) {
-        try {
+    private val _moviesList = MutableLiveData<List<Movie>>()
+    val moviesList: LiveData<List<Movie>> get() = _moviesList
 
-            emit(StateView.Loading())
+    private val _searchState = MutableLiveData<StateView<Unit>>()
+    val searchState: LiveData<StateView<Unit>> get() = _searchState
 
-            val movies = searchMoviesUseCase.invoke(
-                apiKey = BuildConfig.API_KEY,
-                language = Constants.Movie.LANGUAGE,
-                query = query
-            )
+    fun searchMovies(query: String?) {
+       viewModelScope.launch {
+           try {
 
+               _searchState.postValue(StateView.Loading())
 
-            emit(StateView.Success(movies))
+               val movies = searchMoviesUseCase(
+                   apiKey = BuildConfig.API_KEY,
+                   language = Constants.Movie.LANGUAGE,
+                   query = query
+               )
+               _moviesList.postValue(movies)
 
-        } catch (e: HttpException) {
-            e.printStackTrace()
-            emit(StateView.Error(e.message))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(StateView.Error(e.message))
-        }
+               _searchState.postValue(StateView.Success(Unit))
+
+           } catch (e: HttpException) {
+               e.printStackTrace()
+               _searchState.postValue(StateView.Error(e.message))
+           } catch (e: Exception) {
+               e.printStackTrace()
+               _searchState.postValue(StateView.Error(e.message))
+           }
+       }
     }
 }
