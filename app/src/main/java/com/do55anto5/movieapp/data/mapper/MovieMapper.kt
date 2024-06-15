@@ -1,5 +1,6 @@
 package com.do55anto5.movieapp.data.mapper
 
+import com.do55anto5.movieapp.data.local.entity.MovieEntity
 import com.do55anto5.movieapp.data.model.AuthorDetailsResponse
 import com.do55anto5.movieapp.data.model.CountryResponse
 import com.do55anto5.movieapp.data.model.CreditsResponse
@@ -39,6 +40,7 @@ fun MovieResponse.toDomain(): Movie {
         video = video,
         voteAverage = voteAverage,
         voteCount = voteCount,
+        runtime = runtime,
         productionCountries = productionCountries?.map { it.toDomain() }
     )
 }
@@ -98,5 +100,24 @@ fun MovieReviewResponse.toDomain(): MovieReview {
         id = id,
         updatedAt = updatedAt,
         url = url,
+    )
+}
+
+fun Movie.toEntity(): MovieEntity {
+    return MovieEntity(
+        id = id,
+        title = title,
+        poster = posterPath,
+        runtime = runtime,
+        insertion = System.currentTimeMillis()
+    )
+}
+
+fun MovieEntity.toDomain(): Movie {
+    return Movie(
+        id = id,
+        title = title,
+        posterPath = poster,
+        runtime = runtime
     )
 }

@@ -15,9 +15,9 @@ interface MovieDao {
     fun getMovies() : Flow<List<MovieEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovies(movieEntity: MovieEntity)
+    suspend fun insertMovies(movieEntity: MovieEntity)
 
     @Query("DELETE FROM ${Tables.MOVIE_TABLE} WHERE ${Columns.MOVIE_ID_COLUMN} = :movieId")
-    fun deleteMovies(movieId : Int?)
+    suspend fun deleteMovie(movieId : Int?)
 
 }
