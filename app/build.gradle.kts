@@ -93,6 +93,11 @@ dependencies {
     // Glide https://github.com/bumptech/glide
     implementation(libs.github.glide)
 
+    // Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
+
     // Tests
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
