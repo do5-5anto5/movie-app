@@ -1,0 +1,23 @@
+package com.do55anto5.movieapp.data.local.dao
+
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.do55anto5.movieapp.data.local.entity.MovieEntity
+import com.do55anto5.movieapp.util.DBConstants.*
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface MovieDao {
+
+    @Query("SELECT * FROM ${Tables.MOVIE_TABLE}")
+    fun getMovies() : Flow<List<MovieEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertMovies(movieEntity: MovieEntity)
+
+    @Query("DELETE FROM ${Tables.MOVIE_TABLE} WHERE ${Columns.MOVIE_ID_COLUMN} = :movieId")
+    fun deleteMovies(movieId : Int?)
+
+}
