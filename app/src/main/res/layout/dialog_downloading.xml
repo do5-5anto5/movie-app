@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="32dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_title_dialog_downloading"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:fontFamily="@font/urbanist_700"
+        android:textColor="@color/color_default"/>
+
+    <TextView
+        android:id="@+id/text_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_message_dialog_downloading"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:fontFamily="@font/urbanist_400"
+        android:textColor="#212121"/>
+
+   <View
+       android:layout_width="match_parent"
+       android:layout_height="1dp"
+       android:layout_marginVertical="32dp"
+       android:background="#212121"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_downloading_progress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1f"
+            android:textSize="16sp"
+            android:fontFamily="@font/urbanist_700"
+            android:textColor="#212121"
+            tools:text="457.2 / 968.5 MB"/>
+
+        <TextView
+            android:id="@+id/text_downloading_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:fontFamily="@font/urbanist_700"
+            android:textColor="@color/color_default"
+            tools:text="47%"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progress_indicator"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1f"
+            android:layout_marginEnd="8dp"
+            app:trackThickness="8dp"
+            app:trackCornerRadius="100dp"
+            tools:progress="47"/>
+
+        <ImageButton
+            android:id="@+id/ib_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_close_black_24dp"
+            android:paddingStart="8dp"
+            android:paddingTop="2dp"
+            tools:ignore="ContentDescription"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ib_hide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/text_hide_dialog_downloading"
+        style="@style/ThemeSecondaryButton"
+        app:backgroundTint="#FCE7E9"/>
+
+</LinearLayout>

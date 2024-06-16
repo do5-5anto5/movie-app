@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="8dp"
-    android:layout_marginHorizontal="16dp">
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
@@ -21,9 +21,9 @@
             android:id="@+id/iv_movie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:src="@drawable/movie_poster"
             android:scaleType="centerCrop"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/movie_poster" />
 
         <ImageView
             android:id="@+id/iv_play"
@@ -74,17 +74,17 @@
         android:fontFamily="@font/urbanist_600"
         android:paddingHorizontal="10dp"
         android:paddingVertical="6dp"
-        android:text="827.6 MB"
         android:textColor="@color/color_default"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardView3" />
+        app:layout_constraintStart_toEndOf="@+id/cardView3"
+        tools:text="827.6 MB" />
 
     <ImageButton
         android:id="@+id/ib_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="null"
+        android:background="@android:color/transparent"
         android:paddingHorizontal="16dp"
         android:paddingVertical="8dp"
         android:src="@drawable/ic_delete"
