@@ -1,15 +1,19 @@
 package com.do55anto5.movieapp.presenter.main.movie_details.details
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.do55anto5.movieapp.R
+import com.do55anto5.movieapp.databinding.DialogDownloadingBinding
 import com.do55anto5.movieapp.databinding.FragmentMovieDetailsBinding
 import com.do55anto5.movieapp.domain.model.Movie
 import com.do55anto5.movieapp.presenter.main.movie_details.similar.SimilarFragment
@@ -19,6 +23,7 @@ import com.do55anto5.movieapp.presenter.main.movie_details.adapter.ViewPagerAdap
 import com.do55anto5.movieapp.presenter.main.movie_details.comments.CommentsFragment
 import com.do55anto5.movieapp.util.StateView
 import com.do55anto5.movieapp.util.ViewPager2ViewHeightAnimator
+import com.do55anto5.movieapp.util.calculateFileSize
 import com.do55anto5.movieapp.util.initToolbar
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +42,10 @@ class MovieDetailsFragment : Fragment() {
     private val args: MovieDetailsFragmentArgs by navArgs()
 
     private lateinit var castAdapter: CastAdapter
+
+    private lateinit var dialogDownloading: AlertDialog
+
+    private var movie: Movie? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,6 +66,12 @@ class MovieDetailsFragment : Fragment() {
         initRecyclerViewCredits()
 
         configTabLayout()
+
+        initListeners()
+    }
+
+    private fun initListeners() {
+        binding.btnDownload.setOnClickListener { showDownloadingDialog() }
     }
 
     private fun configTabLayout() {
@@ -103,7 +118,8 @@ class MovieDetailsFragment : Fragment() {
                 }
 
                 is StateView.Success -> {
-                    configData(stateView.data)
+                    this.movie = stateView.data
+                    configData()
                 }
 
                 is StateView.Error -> {
@@ -150,7 +166,7 @@ class MovieDetailsFragment : Fragment() {
         }
     }
 
-    private fun configData(movie: Movie?) {
+    private fun configData() {
         Glide.with(requireContext())
             .load("https://image.tmdb.org/t/p/w500${movie?.posterPath}")
             .error(R.drawable.bg_shadow)
@@ -176,6 +192,49 @@ class MovieDetailsFragment : Fragment() {
         }
 
         getCredits()
+    }
+
+    private fun showDownloadingDialog() {
+        val dialogBinding = DialogDownloadingBinding.inflate(LayoutInflater.from(requireContext()))
+        var progress = 0
+        var downloaded = 0.0
+        val movieDuration = movie?.runtime?.toDouble() ?: 0.0
+
+        val handle = Handler(Looper.getMainLooper())
+        val runnable = object: Runnable {
+            override fun run() {
+                if (progress < 100) {
+
+                    downloaded += (movieDuration / 100)
+                    dialogBinding.textDownloadingProgress.text = getString(
+                        R.string.text_downloaded_size_dialog_downloading,
+                        downloaded.calculateFileSize(),
+                        movieDuration.calculateFileSize()
+                    )
+
+                    progress++
+                    dialogBinding.progressIndicator.progress = progress
+                    dialogBinding.textDownloadingPercent.text = getString(
+                        R.string.text_download_progress_dialog_downloading,
+                        progress
+                    )
+                handle.postDelayed(this, 50)
+                } else {
+                    dialogDownloading.dismiss()
+                }
+            }
+        }
+
+        handle.post(runnable)
+
+        val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog)
+        builder.setView(dialogBinding.root)
+
+        dialogBinding.btnHide.setOnClickListener { dialogDownloading.dismiss() }
+        dialogBinding.ibCancel.setOnClickListener { dialogDownloading.dismiss() }
+
+        dialogDownloading = builder.create()
+        dialogDownloading.show()
     }
 
     override fun onDestroyView() {
