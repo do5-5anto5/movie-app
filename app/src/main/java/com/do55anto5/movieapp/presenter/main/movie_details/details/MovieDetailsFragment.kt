@@ -45,7 +45,7 @@ class MovieDetailsFragment : Fragment() {
 
     private lateinit var dialogDownloading: AlertDialog
 
-    private var movie: Movie? = null
+    private lateinit var movie: Movie
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,7 +71,10 @@ class MovieDetailsFragment : Fragment() {
     }
 
     private fun initListeners() {
-        binding.btnDownload.setOnClickListener { showDownloadingDialog() }
+        binding.btnDownload.setOnClickListener {
+            showDownloadingDialog()
+            insertMovie()
+        }
     }
 
     private fun configTabLayout() {
@@ -118,7 +121,29 @@ class MovieDetailsFragment : Fragment() {
                 }
 
                 is StateView.Success -> {
-                    this.movie = stateView.data
+                   stateView.data?.let {
+                        this.movie = it
+                        configData()
+                   }
+                }
+
+                is StateView.Error -> {
+                }
+
+                else -> {
+
+                }
+            }
+        }
+    }
+
+    private fun insertMovie() {
+        viewModel.insertMovie(movie).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {
+                }
+
+                is StateView.Success -> {
                     configData()
                 }
 
@@ -168,27 +193,27 @@ class MovieDetailsFragment : Fragment() {
 
     private fun configData() {
         Glide.with(requireContext())
-            .load("https://image.tmdb.org/t/p/w500${movie?.posterPath}")
+            .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
             .error(R.drawable.bg_shadow)
             .into(binding.imageMovie)
 
         val originalFormat = DateFormat.getDateInstance(DateFormat.SHORT, Locale.ROOT)
-        val date = originalFormat.parse(movie?.releaseDate ?: "")
+        val date = originalFormat.parse(movie.releaseDate ?: "")
         val yearFormat = SimpleDateFormat("yyyy", Locale.ROOT)
         val year = date?.let { yearFormat.format(it) }
 
         with(binding) {
 
-            textMovie.text = movie?.title
+            textMovie.text = movie.title
 
-            textVoteAverage.text = String.format(Locale.ROOT, "%.1f", movie?.voteAverage)
+            textVoteAverage.text = String.format(Locale.ROOT, "%.1f", movie.voteAverage)
             textReleaseDate.text = year
-            textProductionCountry.text = movie?.productionCountries?.get(0)?.name ?: ""
+            textProductionCountry.text = movie.productionCountries?.get(0)?.name ?: ""
 
-            val genres = movie?.genres?.map { it.name }?.joinToString(", ")
+            val genres = movie.genres?.map { it.name }?.joinToString(", ")
             textGenres.text = getString(R.string.text_all_movie_genres, genres)
 
-            textOverview.text = movie?.overview
+            textOverview.text = movie.overview
         }
 
         getCredits()
@@ -198,7 +223,7 @@ class MovieDetailsFragment : Fragment() {
         val dialogBinding = DialogDownloadingBinding.inflate(LayoutInflater.from(requireContext()))
         var progress = 0
         var downloaded = 0.0
-        val movieDuration = movie?.runtime?.toDouble() ?: 0.0
+        val movieDuration = movie.runtime?.toDouble() ?: 0.0
 
         val handle = Handler(Looper.getMainLooper())
         val runnable = object: Runnable {
