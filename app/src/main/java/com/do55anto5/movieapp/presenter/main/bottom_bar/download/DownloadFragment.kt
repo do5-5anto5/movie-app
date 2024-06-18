@@ -7,21 +7,26 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.do55anto5.movieapp.MainGraphDirections
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentDownloadBinding
 import com.do55anto5.movieapp.presenter.main.bottom_bar.download.adapter.DownloadMovieAdapter
 import com.do55anto5.movieapp.util.hideKeyboard
 import com.ferfalk.simplesearchview.SimpleSearchView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DownloadFragment : Fragment() {
 
     private var _binding: FragmentDownloadBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var mAdapter: DownloadMovieAdapter
+
+    private val viewModel: DownloadViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +47,10 @@ class DownloadFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRecyclerView()
+
+        initObservers()
+
+        getData()
 
         initSearchView()
     }
@@ -97,9 +106,19 @@ class DownloadFragment : Fragment() {
             }
         )
         with(binding.rvMovies) {
-            layoutManager = GridLayoutManager(requireContext(), 2)
+            layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
             adapter = mAdapter
+        }
+    }
+
+    private fun getData() {
+        viewModel.getMovies()
+    }
+
+    private fun initObservers() {
+        viewModel.moviesList.observe(viewLifecycleOwner) {
+            mAdapter.submitList(it)
         }
     }
 
