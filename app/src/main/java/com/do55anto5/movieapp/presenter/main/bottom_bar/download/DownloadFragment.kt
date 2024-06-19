@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -154,9 +155,15 @@ class DownloadFragment : Fragment() {
     }
 
     private fun initObservers() {
-        viewModel.moviesList.observe(viewLifecycleOwner) {
-            mAdapter.submitList(it)
+        viewModel.moviesList.observe(viewLifecycleOwner) { movies ->
+            mAdapter.submitList(movies)
+            emptyState(movies.isEmpty())
         }
+    }
+
+    private fun emptyState(empty: Boolean) {
+        binding.rvMovies.isVisible = !empty
+        binding.layoutEmpty.isVisible = empty
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
