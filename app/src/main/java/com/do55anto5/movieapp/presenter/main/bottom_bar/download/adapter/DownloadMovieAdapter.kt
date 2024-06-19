@@ -16,7 +16,7 @@ import com.do55anto5.movieapp.util.calculateMovieTime
 class DownloadMovieAdapter(
     private val context: Context,
     private val detailsClickListener: (Int?) -> Unit,
-    private val deleteClickListener: (Int?) -> Unit
+    private val deleteClickListener: (Movie?) -> Unit
 ) : ListAdapter<Movie, DownloadMovieAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
@@ -56,10 +56,12 @@ class DownloadMovieAdapter(
             .error(R.drawable.bg_shadow)
             .into(holder.binding.ivMovie)
 
-        holder.binding.textMovie.text = movie.title
-        holder.binding.textDuration.text = movie.runtime?.calculateMovieTime()
-        holder.binding.textSize.text = movie.runtime?.toDouble()?.calculateFileSize()
-        holder.binding.ibDelete.setOnClickListener { deleteClickListener(movie.id) }
+        with(holder.binding) {
+            textMovie.text = movie.title
+            textDuration.text = movie.runtime?.calculateMovieTime()
+            textSize.text = movie.runtime?.toDouble()?.calculateFileSize()
+            ibDelete.setOnClickListener { deleteClickListener(movie) }
+        }
 
         holder.itemView.setOnClickListener { detailsClickListener(movie.id) }
     }
