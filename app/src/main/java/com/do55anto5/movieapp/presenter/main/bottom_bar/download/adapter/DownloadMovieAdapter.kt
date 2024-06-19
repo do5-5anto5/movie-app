@@ -69,4 +69,8 @@ class DownloadMovieAdapter(
     inner class MyViewHolder(val binding: MovieDownloadItemBinding):
         RecyclerView.ViewHolder(binding.root)
 
+    override fun submitList(list: MutableList<Movie>?) {
+        super.submitList(list?.let { ArrayList(it) })
+    }
+
 }

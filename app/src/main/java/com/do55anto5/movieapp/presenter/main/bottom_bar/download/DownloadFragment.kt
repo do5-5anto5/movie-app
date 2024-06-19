@@ -134,6 +134,17 @@ class DownloadFragment : Fragment() {
             textSize.text = movie?.runtime?.toDouble()?.calculateFileSize()
         }
 
+        bottomSheetBinding.btnCancel.setOnClickListener {
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetBinding.btnConfirm.setOnClickListener {
+            movie?.let {
+                viewModel.deleteMovie(it.id)
+                bottomSheetDialog.dismiss()
+            }
+        }
+
         bottomSheetDialog.setContentView(bottomSheetBinding.root)
         bottomSheetDialog.show()
     }

@@ -100,7 +100,7 @@
     <!--    BottomSheetDelete-->
     <string name="title_delete_bottom_sheet">Delete</string>
     <string name="text_confirm_delete_bottom_sheet">Deseja excluir esse filme\ndos seus arquivos?</string>
-    <string name="text_button_delete_bottom_sheet">Deletar</string>
+    <string name="text_button_delete_bottom_sheet">Sim, deletar</string>
     <string name="text_button_cancel_bottom_sheet">Cancelar</string>
 
     <!-- TODO: Remove or change this placeholder text -->

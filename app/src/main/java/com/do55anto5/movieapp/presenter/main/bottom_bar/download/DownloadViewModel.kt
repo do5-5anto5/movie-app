@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.do55anto5.movieapp.domain.local.usecase.DeleteMovieUseCase
 import com.do55anto5.movieapp.domain.local.usecase.GetMoviesUseCase
 import com.do55anto5.movieapp.domain.model.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DownloadViewModel @Inject constructor(
-    private val getMoviesUseCase: GetMoviesUseCase
+    private val getMoviesUseCase: GetMoviesUseCase,
+    private val deleteMovieUseCase: DeleteMovieUseCase
 ): ViewModel() {
 
     private val _moviesList = MutableLiveData(mutableListOf<Movie>())
@@ -22,6 +24,16 @@ class DownloadViewModel @Inject constructor(
         getMoviesUseCase().collect{ movies ->
             _moviesList.postValue(movies.toMutableList())
         }
+    }
+
+    fun deleteMovie(movieId: Int?) = viewModelScope.launch {
+        deleteMovieUseCase(movieId)
+
+        val movieNewList = _moviesList.value?.apply {
+            removeIf { it.id == movieId }
+        }
+
+       _moviesList.postValue(movieNewList)
     }
 
 }
