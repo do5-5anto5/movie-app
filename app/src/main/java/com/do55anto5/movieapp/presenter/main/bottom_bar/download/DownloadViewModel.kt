@@ -20,6 +20,9 @@ class DownloadViewModel @Inject constructor(
     private val _moviesList = MutableLiveData(mutableListOf<Movie>())
     var moviesList: LiveData<MutableList<Movie>> = _moviesList
 
+    private val _moviesSearchList = MutableLiveData(mutableListOf<Movie>())
+    var moviesSearchList: LiveData<MutableList<Movie>> = _moviesSearchList
+
     fun getMovies() = viewModelScope.launch {
         getMoviesUseCase().collect{ movies ->
             _moviesList.postValue(movies.toMutableList())
@@ -29,11 +32,18 @@ class DownloadViewModel @Inject constructor(
     fun deleteMovie(movieId: Int?) = viewModelScope.launch {
         deleteMovieUseCase(movieId)
 
-        val movieNewList = _moviesList.value?.apply {
+        val newMoviesList = _moviesList.value?.apply {
             removeIf { it.id == movieId }
         }
 
-       _moviesList.postValue(movieNewList)
+       _moviesList.postValue(newMoviesList)
+    }
+
+    fun searchMovie(search: String) = viewModelScope.launch {
+        val newMoviesList = _moviesList.value?.filter {
+            it.title?.contains(search, true) == true
+        }
+        _moviesSearchList.postValue(newMoviesList?.toMutableList())
     }
 
 }
