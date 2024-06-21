@@ -2,9 +2,9 @@ package com.do55anto5.movieapp.presenter.main.movie_details.comments
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.do55anto5.movieapp.BuildConfig
+import com.do55anto5.movieapp.BuildConfig.API_KEY
 import com.do55anto5.movieapp.domain.usecase.movie.GetMovieReviewsUseCase
-import com.do55anto5.movieapp.util.Constants
+import com.do55anto5.movieapp.util.Constants.Movie.LANGUAGE_EN
 import com.do55anto5.movieapp.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -22,8 +22,8 @@ class CommentsViewModel @Inject constructor(
             emit(StateView.Loading())
 
             val genres = getCommentsUseCase.invoke(
-                apiKey = BuildConfig.API_KEY,
-                language = Constants.Movie.LANGUAGE_EN,
+                apiKey = API_KEY,
+                language = LANGUAGE_EN,
                 movieId = movieId
             )
 

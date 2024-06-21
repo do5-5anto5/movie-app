@@ -2,10 +2,11 @@ package com.do55anto5.movieapp.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.do55anto5.movieapp.BuildConfig
+import com.do55anto5.movieapp.BuildConfig.API_KEY
 import com.do55anto5.movieapp.data.api.ServiceApi
 import com.do55anto5.movieapp.data.model.MovieResponse
-import com.do55anto5.movieapp.util.Constants
+import com.do55anto5.movieapp.util.Constants.Movie.LANGUAGE
+import com.do55anto5.movieapp.util.Constants.Paging.DEFAULT_PAGE_INDEX
 
 class MovieByGenrePagingSource(
     private val service: ServiceApi,
@@ -16,16 +17,16 @@ class MovieByGenrePagingSource(
         params: LoadParams<Int>
     ): LoadResult<Int, MovieResponse> {
         return try {
-            val page = params.key ?: Constants.Paging.DEFAULT_PAGE_INDEX
+            val page = params.key ?: DEFAULT_PAGE_INDEX
             val result = service.getMoviesByGenre(
-                apiKey = BuildConfig.API_KEY,
-                language = Constants.Movie.LANGUAGE,
+                apiKey = API_KEY,
+                language = LANGUAGE,
                 genreId = genreId,
                 page = page
             ).results ?: emptyList()
             return LoadResult.Page(
                 data = result,
-                prevKey = if (page == Constants.Paging.DEFAULT_PAGE_INDEX) null else page - 1,
+                prevKey = if (page == DEFAULT_PAGE_INDEX) null else page - 1,
                 nextKey = if (result.isEmpty()) null else page + 1
             )
         } catch (e: Exception) {

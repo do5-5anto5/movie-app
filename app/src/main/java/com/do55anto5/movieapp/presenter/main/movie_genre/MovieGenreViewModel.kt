@@ -3,11 +3,10 @@ package com.do55anto5.movieapp.presenter.main.movie_genre
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.paging.PagingData
-import com.do55anto5.movieapp.BuildConfig
+import com.do55anto5.movieapp.BuildConfig.API_KEY
 import com.do55anto5.movieapp.domain.model.Movie
 import com.do55anto5.movieapp.domain.usecase.movie.GetMoviesByGenreUseCase
 import com.do55anto5.movieapp.domain.usecase.movie.SearchMoviesUseCase
-import com.do55anto5.movieapp.util.Constants
 import com.do55anto5.movieapp.util.Constants.Movie.LANGUAGE
 import com.do55anto5.movieapp.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,7 +32,7 @@ class MovieGenreViewModel @Inject constructor(
         if (genreId != currentGenreId || forceRequest) {
             currentGenreId = genreId
             getMoviesByGenreUseCase(
-                apiKey = BuildConfig.API_KEY,
+                apiKey = API_KEY,
                 language = LANGUAGE,
                 genreId = genreId
             )
@@ -46,7 +45,7 @@ class MovieGenreViewModel @Inject constructor(
             emit(StateView.Loading())
 
             val movies = searchMoviesUseCase.invoke(
-                apiKey = BuildConfig.API_KEY,
+                apiKey = API_KEY,
                 language = LANGUAGE,
                 query = query
             )
