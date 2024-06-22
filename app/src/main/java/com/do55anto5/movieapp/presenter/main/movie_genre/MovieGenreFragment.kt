@@ -84,17 +84,17 @@ class MovieGenreFragment : Fragment() {
             moviePagingAdapter.loadStateFlow.collectLatest { loadState ->
                 when (loadState.refresh) {
                     is LoadState.Loading -> {
-                        binding.progressBar.isVisible = true
                         binding.recyclerMovies.isVisible = false
+                        binding.shimmer.startShimmer()
                     }
 
                     is LoadState.NotLoading -> {
-                        binding.progressBar.isVisible = false
+                        binding.shimmer.stopShimmer()
                         binding.recyclerMovies.isVisible = true
                     }
 
                     is LoadState.Error -> {
-                        binding.progressBar.isVisible = false
+                        binding.shimmer.stopShimmer()
                         binding.recyclerMovies.isVisible = false
                         val error = (loadState.refresh as LoadState.Error)
                             .error.message ?: R.string.error_generic.toString()
@@ -187,18 +187,18 @@ class MovieGenreFragment : Fragment() {
         viewModel.searchMovies(query).observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {
+                    binding.shimmer.startShimmer()
                     binding.recyclerMovies.isVisible = false
-                    binding.progressBar.isVisible = true
                 }
 
                 is StateView.Success -> {
-                    binding.progressBar.isVisible = false
                     getMoviesByGenre(forceRequest = true)
                     binding.recyclerMovies.isVisible = true
+                    binding.shimmer.stopShimmer()
                 }
 
                 is StateView.Error -> {
-                    binding.progressBar.isVisible = false
+                    binding.shimmer.stopShimmer()
                     binding.recyclerMovies.isVisible = true
                 }
             }

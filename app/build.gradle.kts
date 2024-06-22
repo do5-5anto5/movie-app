@@ -103,6 +103,8 @@ dependencies {
     // Paging
     implementation(libs.androidx.paging.runtime)
 
+    // Shimmer https://github.com/facebookarchive/shimmer-android/issues?q=is%3Aissue+is%3Aopen+implementation
+    implementation(libs.shimmer)
 
     // Tests
     testImplementation(libs.junit)

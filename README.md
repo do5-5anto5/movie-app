@@ -21,6 +21,8 @@
     Handles fetching, decoding, and displaying images, optimizing for fast loading and minimal memory usage.
 #### **Retrofit:**
     Handles the underlying network requests and object mapping.
+#### **Shimmer:**
+    Visual effect for loading placeholders.
 #### **Lifecycle:**
     Manage component lifecycles, enable lifecycle-aware code execution, revent memory leaks and crashes.
 #### **Kotlin:**
