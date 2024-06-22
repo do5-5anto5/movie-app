@@ -7,13 +7,16 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
+import br.com.hellodev.movieapp.presenter.main.moviegenre.adapter.LoadStatePagingAdapter
 import com.do55anto5.movieapp.MainGraphDirections
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentMovieGenreBinding
@@ -76,15 +79,62 @@ class MovieGenreFragment : Fragment() {
                 }
             }
         )
+
+        lifecycleScope.launch {
+            moviePagingAdapter.loadStateFlow.collectLatest { loadState ->
+                when (loadState.refresh) {
+                    is LoadState.Loading -> {
+                        binding.progressBar.isVisible = true
+                        binding.recyclerMovies.isVisible = false
+                    }
+
+                    is LoadState.NotLoading -> {
+                        binding.progressBar.isVisible = false
+                        binding.recyclerMovies.isVisible = true
+                    }
+
+                    is LoadState.Error -> {
+                        binding.progressBar.isVisible = false
+                        binding.recyclerMovies.isVisible = false
+                        val error = (loadState.refresh as LoadState.Error)
+                            .error.message ?: R.string.error_generic.toString()
+
+                        Toast.makeText(
+                            requireContext(),
+                            error, Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        }
+
         with(binding.recyclerMovies) {
-            layoutManager = GridLayoutManager(requireContext(), 2)
             setHasFixedSize(true)
-            adapter = moviePagingAdapter
+
+            val gridLayoutManager = GridLayoutManager(requireContext(), 2)
+            layoutManager = gridLayoutManager
+
+            val footerAdapter = moviePagingAdapter.withLoadStateFooter(
+                footer = LoadStatePagingAdapter()
+            )
+
+            adapter = footerAdapter
+
+            gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return if (position == moviePagingAdapter.itemCount && footerAdapter.itemCount > 0) {
+                        2
+                    } else {
+                        1
+                    }
+                }
+            }
         }
     }
 
     private fun initSearchView() {
-        binding.simpleSearchView.setOnQueryTextListener(object : SimpleSearchView.OnQueryTextListener {
+        binding.simpleSearchView.setOnQueryTextListener(object :
+            SimpleSearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
 
                 hideKeyboard()
@@ -104,7 +154,8 @@ class MovieGenreFragment : Fragment() {
             }
         })
 
-        binding.simpleSearchView.setOnSearchViewListener(object : SimpleSearchView.SearchViewListener {
+        binding.simpleSearchView.setOnSearchViewListener(object :
+            SimpleSearchView.SearchViewListener {
             override fun onSearchViewShown() {
                 Log.d("SimpleSearchView", "onSearchViewShown")
             }
@@ -124,10 +175,10 @@ class MovieGenreFragment : Fragment() {
     }
 
     private fun getMoviesByGenre(forceRequest: Boolean = false) {
-        lifecycleScope.launch{
+        lifecycleScope.launch {
             viewModel.getMoviesByGenre(genreId = args.genreId, forceRequest = forceRequest)
             viewModel.moviesList.collectLatest { pagingData ->
-                moviePagingAdapter.submitData(viewLifecycleOwner.lifecycle ,pagingData)
+                moviePagingAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
             }
         }
     }
