@@ -11,12 +11,12 @@ plugins {
 
 android {
     namespace = "com.do55anto5.movieapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.do55anto5.movieapp"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
