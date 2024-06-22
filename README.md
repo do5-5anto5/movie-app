@@ -13,6 +13,16 @@
 #### **Dagger Hilt:**
     A lightweight and efficient dependency injection library that organizes code and simplifies  
     dependency management.
+#### **Paging 3:**
+    Loads and displays large datasets in Android RecyclerViews. 
+    It incrementally loads data, optimizing memory and performance. 
+    It supports diverse data sources like network, databases, and files.
+#### **Glide:**
+    Handles fetching, decoding, and displaying images, optimizing for fast loading and minimal memory usage.
+#### **Retrofit:**
+    Handles the underlying network requests and object mapping.
+#### **Lifecycle:**
+    Manage component lifecycles, enable lifecycle-aware code execution, revent memory leaks and crashes.
 #### **Kotlin:**
     The official programming language for Android development, modern, concise, and secure.
     
@@ -20,5 +30,5 @@
     If you want to clone it and run authentication, create a project on Firebase (https://console.firebase.google.com/)
     and save your google.services in app folder (local repo) to athente and take your view tests
     
-**on Development:** 
+## **on Development:** 
     The app can be expanded with new features and enhancements according to the specific needs.
