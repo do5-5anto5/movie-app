@@ -27,8 +27,10 @@
     The official programming language for Android development, modern, concise, and secure.
     
 ## **Additional Considerations**   
-    If you want to clone it and run authentication, create a project on Firebase (https://console.firebase.google.com/)
-    and save your google.services in app folder (local repo) to athente and take your view tests
+    If you want to clone it and run authentication, 
+    create a project on Firebase (https://console.firebase.google.com/)
+    and save your google-services.json in app folder (local repository) 
+    to authenticate and take your app experiencing
     
 ## **on Development:** 
     The app can be expanded with new features and enhancements according to the specific needs.
