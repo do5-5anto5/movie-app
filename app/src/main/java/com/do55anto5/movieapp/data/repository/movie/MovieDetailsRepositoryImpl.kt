@@ -11,50 +11,34 @@ class MovieDetailsRepositoryImpl @Inject constructor(
     private val serviceApi: ServiceApi
 ): MovieDetailsRepository {
     override suspend fun getMovieDetails(
-        apiKey: String?,
-        language: String?,
         movieId: Int?
     ): MovieResponse {
         return serviceApi.getMovieDetails(
-            movieId = movieId,
-            apiKey = apiKey,
-            language = language
+            movieId = movieId
         )
     }
 
     override suspend fun getMovieCredits(
-        apiKey: String?,
-        language: String?,
         movieId: Int?
     ): CreditsResponse {
         return serviceApi.getMovieCredits(
-            movieId = movieId,
-            apiKey = apiKey,
-            language = language
+            movieId = movieId
         )
     }
 
     override suspend fun getSimilar(
-        apiKey: String?,
-        language: String?,
         movieId: Int?
     ): List<MovieResponse> {
         return serviceApi.getSimilar(
-            movieId = movieId,
-            apiKey = apiKey,
-            language = language
+            movieId = movieId
         ).results ?: emptyList()
     }
 
     override suspend fun getMovieReviews(
-        apiKey: String?,
-        language: String?,
         movieId: Int?
     ): List<MovieReviewResponse> {
         return serviceApi.getMovieReviews(
-            movieId = movieId,
-            apiKey = apiKey,
-            language = language
+            movieId = movieId
         ).results ?: emptyList()
     }
 }

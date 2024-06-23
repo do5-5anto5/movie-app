@@ -2,9 +2,7 @@ package com.do55anto5.movieapp.presenter.main.movie_details.similar
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.do55anto5.movieapp.BuildConfig.API_KEY
 import com.do55anto5.movieapp.domain.usecase.movie.GetSimilarUseCase
-import com.do55anto5.movieapp.util.Constants.Movie.LANGUAGE
 import com.do55anto5.movieapp.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -22,8 +20,6 @@ class SimilarViewModel @Inject constructor(
             emit(StateView.Loading())
 
             val genres = getSimilarUseCase.invoke(
-                apiKey = API_KEY,
-                language = LANGUAGE,
                 movieId = movieId
             )
 

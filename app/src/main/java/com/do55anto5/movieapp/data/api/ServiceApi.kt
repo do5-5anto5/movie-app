@@ -13,22 +13,16 @@ interface ServiceApi {
 
     @GET("genre/movie/list")
     suspend fun getGenres(
-        @Query("api_key") apiKey: String?,
-        @Query("language") language: String?
     ) : GenresResponse
 
     @GET("discover/movie")
     suspend fun getMoviesByGenre(
-        @Query("api_key") apiKey: String?,
-        @Query("language") language: String?,
         @Query("with_genres") genreId: Int?,
         @Query("page") page: Int?
     ) : RemoteBasePagination<List<MovieResponse>>
 
     @GET("search/movie")
     suspend fun searchMovies(
-        @Query("api_key") apiKey: String?,
-        @Query("language") language: String?,
         @Query("query") query: String?,
         @Query("page") page: Int?
     ) : RemoteBasePagination<List<MovieResponse>>
@@ -36,29 +30,21 @@ interface ServiceApi {
     @GET("movie/{movie_id}")
     suspend fun getMovieDetails(
         @Path("movie_id") movieId: Int?,
-        @Query("api_key") apiKey: String?,
-        @Query("language") language: String?
     ) : MovieResponse
 
     @GET("movie/{movie_id}/credits")
     suspend fun getMovieCredits(
         @Path("movie_id") movieId: Int?,
-        @Query("api_key") apiKey: String?,
-        @Query("language") language: String?
     ) : CreditsResponse
 
     @GET("movie/{movie_id}/similar")
     suspend fun getSimilar(
         @Path("movie_id") movieId: Int?,
-        @Query("api_key") apiKey: String?,
-        @Query("language") language: String?
     ) : RemoteBasePagination<List<MovieResponse>>
 
     @GET("movie/{movie_id}/reviews")
     suspend fun getMovieReviews(
         @Path("movie_id") movieId: Int?,
-        @Query("api_key") apiKey: String?,
-        @Query("language") language: String?
     ) : RemoteBasePagination<List<MovieReviewResponse>>
 
 }

@@ -2,10 +2,8 @@ package com.do55anto5.movieapp.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.do55anto5.movieapp.BuildConfig.API_KEY
 import com.do55anto5.movieapp.data.api.ServiceApi
 import com.do55anto5.movieapp.data.model.MovieResponse
-import com.do55anto5.movieapp.util.Constants.Movie.LANGUAGE
 import com.do55anto5.movieapp.util.Constants.Paging.DEFAULT_PAGE_INDEX
 
 class SearchMoviePagingSource(
@@ -19,8 +17,6 @@ class SearchMoviePagingSource(
         return try {
             val page = params.key ?: DEFAULT_PAGE_INDEX
             val result = service.searchMovies(
-                apiKey = API_KEY,
-                language = LANGUAGE,
                 query = query,
                 page = page
             ).results ?: emptyList()
