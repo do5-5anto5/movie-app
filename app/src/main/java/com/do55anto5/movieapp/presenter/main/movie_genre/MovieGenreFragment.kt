@@ -21,7 +21,6 @@ import com.do55anto5.movieapp.MainGraphDirections
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentMovieGenreBinding
 import com.do55anto5.movieapp.presenter.main.movie_genre.adapter.MoviePagingAdapter
-import com.do55anto5.movieapp.util.StateView
 import com.do55anto5.movieapp.util.hideKeyboard
 import com.do55anto5.movieapp.util.initToolbar
 import com.ferfalk.simplesearchview.SimpleSearchView
@@ -187,26 +186,9 @@ class MovieGenreFragment : Fragment() {
     }
 
     private fun searchMovies(query: String?) {
-        viewModel.searchMovies(query).observe(viewLifecycleOwner) { stateView ->
-            when (stateView) {
-                is StateView.Loading -> {
-                    binding.shimmer.startShimmer()
-                    binding.shimmer.isVisible = true
-                    binding.recyclerMovies.isVisible = false
-                }
-
-                is StateView.Success -> {
-                    getMoviesByGenre(forceRequest = true)
-                    binding.recyclerMovies.isVisible = true
-                    binding.shimmer.stopShimmer()
-                    binding.shimmer.isVisible = false
-                }
-
-                is StateView.Error -> {
-                    binding.shimmer.stopShimmer()
-                    binding.shimmer.isVisible = false
-                    binding.recyclerMovies.isVisible = true
-                }
+        lifecycleScope.launch {
+            viewModel.searchMovies(query).collectLatest { pagingData ->
+                moviePagingAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
             }
         }
     }

@@ -1,7 +1,6 @@
 package com.do55anto5.movieapp.presenter.main.movie_genre
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -10,14 +9,12 @@ import com.do55anto5.movieapp.domain.model.Movie
 import com.do55anto5.movieapp.domain.usecase.movie.GetMoviesByGenreUseCase
 import com.do55anto5.movieapp.domain.usecase.movie.SearchMoviesUseCase
 import com.do55anto5.movieapp.util.Constants.Movie.LANGUAGE
-import com.do55anto5.movieapp.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -45,27 +42,12 @@ class MovieGenreViewModel @Inject constructor(
         }
     }
 
-    fun searchMovies(query: String?) = liveData(Dispatchers.IO) {
-        try {
-
-            emit(StateView.Loading())
-
-            val movies = searchMoviesUseCase.invoke(
-                apiKey = API_KEY,
-                language = LANGUAGE,
-                query = query
-            )
-
-
-            emit(StateView.Success(movies))
-
-        } catch (e: HttpException) {
-            e.printStackTrace()
-            emit(StateView.Error(e.message))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(StateView.Error(e.message))
-        }
+    fun searchMovies(query: String?): Flow<PagingData<Movie>> {
+        return searchMoviesUseCase(
+            apiKey = API_KEY,
+            language = LANGUAGE,
+            query = query
+        )
     }
 
 }

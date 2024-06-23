@@ -29,7 +29,8 @@ interface ServiceApi {
     suspend fun searchMovies(
         @Query("api_key") apiKey: String?,
         @Query("language") language: String?,
-        @Query("query") query: String?
+        @Query("query") query: String?,
+        @Query("page") page: Int?
     ) : RemoteBasePagination<List<MovieResponse>>
 
     @GET("movie/{movie_id}")

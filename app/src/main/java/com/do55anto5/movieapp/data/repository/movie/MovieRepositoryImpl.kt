@@ -5,6 +5,7 @@ import com.do55anto5.movieapp.data.api.ServiceApi
 import com.do55anto5.movieapp.data.model.GenresResponse
 import com.do55anto5.movieapp.data.model.MovieResponse
 import com.do55anto5.movieapp.data.paging.MovieByGenrePagingSource
+import com.do55anto5.movieapp.data.paging.SearchMoviePagingSource
 import com.do55anto5.movieapp.domain.repository.movie.MovieRepository
 import javax.inject.Inject
 
@@ -25,16 +26,12 @@ class MovieRepositoryImpl @Inject constructor(
         return MovieByGenrePagingSource(serviceApi, genreId)
     }
 
-    override suspend fun searchMovies(
+    override fun searchMovies(
         apiKey: String?,
         language: String?,
         query: String?
-    ): List<MovieResponse> {
-        return serviceApi.searchMovies(
-            apiKey = apiKey,
-            language = language,
-            query = query
-        ).results ?: emptyList()
+    ): PagingSource<Int, MovieResponse> {
+        return SearchMoviePagingSource(serviceApi, query)
     }
 
 }

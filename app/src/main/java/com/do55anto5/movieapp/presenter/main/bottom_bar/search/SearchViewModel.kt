@@ -36,7 +36,7 @@ class SearchViewModel @Inject constructor(
                    language = LANGUAGE,
                    query = query
                )
-               _moviesList.postValue(movies)
+//               _moviesList.postValue(movies)
 
                _searchState.postValue(StateView.Success(Unit))
 
