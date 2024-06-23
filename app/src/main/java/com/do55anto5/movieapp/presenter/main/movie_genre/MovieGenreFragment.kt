@@ -86,15 +86,18 @@ class MovieGenreFragment : Fragment() {
                     is LoadState.Loading -> {
                         binding.recyclerMovies.isVisible = false
                         binding.shimmer.startShimmer()
+                        binding.shimmer.isVisible = true
                     }
 
                     is LoadState.NotLoading -> {
                         binding.shimmer.stopShimmer()
+                        binding.shimmer.isVisible = false
                         binding.recyclerMovies.isVisible = true
                     }
 
                     is LoadState.Error -> {
                         binding.shimmer.stopShimmer()
+                        binding.shimmer.isVisible = false
                         binding.recyclerMovies.isVisible = false
                         val error = (loadState.refresh as LoadState.Error)
                             .error.message ?: R.string.error_generic.toString()
@@ -188,6 +191,7 @@ class MovieGenreFragment : Fragment() {
             when (stateView) {
                 is StateView.Loading -> {
                     binding.shimmer.startShimmer()
+                    binding.shimmer.isVisible = true
                     binding.recyclerMovies.isVisible = false
                 }
 
@@ -195,10 +199,12 @@ class MovieGenreFragment : Fragment() {
                     getMoviesByGenre(forceRequest = true)
                     binding.recyclerMovies.isVisible = true
                     binding.shimmer.stopShimmer()
+                    binding.shimmer.isVisible = false
                 }
 
                 is StateView.Error -> {
                     binding.shimmer.stopShimmer()
+                    binding.shimmer.isVisible = false
                     binding.recyclerMovies.isVisible = true
                 }
             }
