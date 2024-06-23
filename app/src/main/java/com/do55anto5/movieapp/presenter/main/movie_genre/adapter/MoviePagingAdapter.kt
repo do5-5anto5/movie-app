@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.MovieGenreItemBinding
 import com.do55anto5.movieapp.domain.model.Movie
+import com.do55anto5.movieapp.util.circularProgressDrawable
 
 class MoviePagingAdapter(
     private val context: Context,
@@ -50,6 +51,7 @@ class MoviePagingAdapter(
 
         Glide.with(context)
             .load("https://image.tmdb.org/t/p/w500${movie?.posterPath}")
+            .placeholder(context.circularProgressDrawable())
             .error(R.drawable.bg_shadow)
             .into(holder.binding.movieImage)
 
