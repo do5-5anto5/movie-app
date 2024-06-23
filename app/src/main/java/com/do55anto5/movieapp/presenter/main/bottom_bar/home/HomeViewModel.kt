@@ -2,11 +2,9 @@ package com.do55anto5.movieapp.presenter.main.bottom_bar.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.do55anto5.movieapp.BuildConfig.API_KEY
 import com.do55anto5.movieapp.data.mapper.toPresentation
 import com.do55anto5.movieapp.domain.usecase.movie.GetGenresUseCase
 import com.do55anto5.movieapp.domain.usecase.movie.GetMoviesByGenreUseCase
-import com.do55anto5.movieapp.util.Constants.Movie.LANGUAGE
 import com.do55anto5.movieapp.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -25,8 +23,6 @@ class HomeViewModel @Inject constructor(
             emit(StateView.Loading())
 
             val genres = getGenresUseCase.invoke(
-                apiKey = API_KEY,
-                language = LANGUAGE
             ).map { it.toPresentation() }
 
 
@@ -47,11 +43,8 @@ class HomeViewModel @Inject constructor(
             emit(StateView.Loading())
 
             val movies = getMoviesByGenreUseCase.invoke(
-                apiKey = API_KEY,
-                language = LANGUAGE,
                 genreId = genreId
             )
-
 
             emit(StateView.Success(movies))
 
