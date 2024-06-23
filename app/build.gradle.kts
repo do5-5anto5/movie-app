@@ -106,6 +106,9 @@ dependencies {
     // Shimmer https://github.com/facebookarchive/shimmer-android/issues?q=is%3Aissue+is%3Aopen+implementation
     implementation(libs.shimmer)
 
+    // Swipe Refresh
+    implementation(libs.androidx.swiperefreshlayout)
+
     // Tests
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

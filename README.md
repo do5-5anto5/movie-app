@@ -6,7 +6,7 @@
     
 
 
-## **Technologies Used**
+## **Dependencies**
 #### **Firebase Authentication:**
     A secure and scalable authentication system from Google that allows  
     you to manage users and sessions.
@@ -23,6 +23,9 @@
     Handles the underlying network requests and object mapping.
 #### **Shimmer:**
     Visual effect for loading placeholders.
+#### **Refresh Swipe:**
+    "Implements pull-to-refresh functionality, 
+    allowing users to refresh content with a simple swipe gesture."
 #### **Lifecycle:**
     Manage component lifecycles, enable lifecycle-aware code execution, revent memory leaks and crashes.
 #### **Kotlin:**
