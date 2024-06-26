@@ -41,7 +41,7 @@ class MovieGenreViewModel @Inject constructor(
     fun searchMovies(query: String?): Flow<PagingData<Movie>> {
         return searchMoviesUseCase(
             query = query
-        )
+        ).cachedIn(viewModelScope)
     }
 
 }
