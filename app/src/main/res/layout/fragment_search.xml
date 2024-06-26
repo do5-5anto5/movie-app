@@ -47,12 +47,39 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent">
 
+           <com.facebook.shimmer.ShimmerFrameLayout
+               android:id="@+id/shimmer"
+               android:layout_width="0dp"
+               android:layout_height="0dp"
+               android:layout_margin="8dp"
+               android:visibility="invisible"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               tools:visibility="visible">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical">
+
+                   <include layout="@layout/placeholder_movie_item" />
+                   <include layout="@layout/placeholder_movie_item" />
+                   <include layout="@layout/placeholder_movie_item" />
+                   <include layout="@layout/placeholder_movie_item" />
+
+               </LinearLayout>
+
+           </com.facebook.shimmer.ShimmerFrameLayout>
+
            <androidx.recyclerview.widget.RecyclerView
                android:id="@+id/recycler_movies"
                android:layout_width="match_parent"
                android:layout_height="0dp"
                android:clipToPadding="false"
                android:padding="8dp"
+               android:visibility="invisible"
                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                app:layout_constraintBottom_toBottomOf="parent"
                app:layout_constraintEnd_toEndOf="parent"
@@ -60,17 +87,6 @@
                app:layout_constraintTop_toTopOf="parent"
                tools:itemCount="1"
                tools:listitem="@layout/genre_item" />
-
-           <ProgressBar
-               android:id="@+id/progress_bar"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:visibility="invisible"
-               app:layout_constraintBottom_toBottomOf="@+id/recycler_movies"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="@+id/recycler_movies"
-               tools:visibility="visible" />
 
            <LinearLayout
                android:id="@+id/layout_empty"
