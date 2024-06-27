@@ -1,10 +1,14 @@
 package com.do55anto5.movieapp.presenter.splash
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentSplashBinding
 
 class SplashFragment : Fragment() {
@@ -19,6 +23,20 @@ class SplashFragment : Fragment() {
     ): View {
         _binding = FragmentSplashBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initSplashScreen()
+    }
+
+    private fun initSplashScreen() {
+        Handler(Looper.getMainLooper()).postDelayed({
+            run {
+                findNavController().navigate(R.id.action_splashFragment_to_onboardingFragment)
+            }
+        }, 3000)
     }
 
     override fun onDestroyView() {
