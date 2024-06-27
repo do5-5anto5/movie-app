@@ -60,6 +60,9 @@ dependencies {
     // Splash Screen API
     implementation(libs.androidx.core.splashscreen)
 
+    // Lottie https://airbnb.io/lottie/#/android
+    implementation(libs.lottie)
+
     // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
