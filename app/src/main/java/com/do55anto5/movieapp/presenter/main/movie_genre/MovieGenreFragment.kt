@@ -23,6 +23,7 @@ import com.do55anto5.movieapp.databinding.FragmentMovieGenreBinding
 import com.do55anto5.movieapp.presenter.main.movie_genre.adapter.MoviePagingAdapter
 import com.do55anto5.movieapp.util.hideKeyboard
 import com.do55anto5.movieapp.util.initToolbar
+import com.do55anto5.movieapp.util.onNavigate
 import com.ferfalk.simplesearchview.SimpleSearchView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -74,7 +75,7 @@ class MovieGenreFragment : Fragment() {
             movieClickListener = { movieId ->
                 movieId?.let {
                     val action = MainGraphDirections.actionGlobalMovieDetailsFragment(movieId)
-                    findNavController().navigate(action)
+                    findNavController().onNavigate(action)
                 }
             }
         )

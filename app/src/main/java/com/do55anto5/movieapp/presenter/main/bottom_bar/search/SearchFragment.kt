@@ -21,6 +21,7 @@ import com.do55anto5.movieapp.presenter.main.bottom_bar.home.adapter.MovieAdapte
 import com.do55anto5.movieapp.presenter.main.movie_genre.adapter.MoviePagingAdapter
 import com.do55anto5.movieapp.util.StateView
 import com.do55anto5.movieapp.util.hideKeyboard
+import com.do55anto5.movieapp.util.onNavigate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -58,7 +59,7 @@ class SearchFragment : Fragment() {
             movieClickListener = { movieId ->
                 movieId?.let {
                     val action = MainGraphDirections.actionGlobalMovieDetailsFragment(movieId)
-                    findNavController().navigate(action)
+                    findNavController().onNavigate(action)
                 }
             }
         )

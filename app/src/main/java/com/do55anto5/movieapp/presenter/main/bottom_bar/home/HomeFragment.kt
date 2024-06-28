@@ -13,6 +13,7 @@ import com.do55anto5.movieapp.databinding.FragmentHomeBinding
 import com.do55anto5.movieapp.presenter.main.bottom_bar.home.adapter.MovieGenreAdapter
 import com.do55anto5.movieapp.presenter.model.GenrePresentation
 import com.do55anto5.movieapp.util.StateView
+import com.do55anto5.movieapp.util.onNavigate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -102,12 +103,12 @@ class HomeFragment : Fragment() {
             showAllListener = { genreId, genreName ->
                 val action =
                     HomeFragmentDirections.actionMenuHomeToMovieGenreFragment(genreId, genreName)
-                findNavController().navigate(action)
+                findNavController().onNavigate(action)
             },
             movieClickListener = { movieId ->
                 movieId?.let {
                     val action = MainGraphDirections.actionGlobalMovieDetailsFragment(movieId)
-                    findNavController().navigate(action)
+                    findNavController().onNavigate(action)
                 }
             }
         )
