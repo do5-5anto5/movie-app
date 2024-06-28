@@ -16,7 +16,7 @@ class MovieByGenrePagingSource(
     ): LoadResult<Int, MovieResponse> {
         return try {
             val page = params.key ?: DEFAULT_PAGE_INDEX
-            val result = service.getMoviesByGenre(
+            val result = service.getMoviesByGenrePagination(
                 genreId = genreId,
                 page = page
             ).results ?: emptyList()

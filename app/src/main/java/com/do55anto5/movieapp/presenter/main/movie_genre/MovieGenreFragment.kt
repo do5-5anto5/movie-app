@@ -66,7 +66,7 @@ class MovieGenreFragment : Fragment() {
 
         initSearchView()
 
-        getMoviesByGenre()
+        getMoviesByGenrePagination()
     }
 
     private fun initRecyclerView() {
@@ -164,7 +164,7 @@ class MovieGenreFragment : Fragment() {
             }
 
             override fun onSearchViewClosed() {
-                getMoviesByGenre()
+                getMoviesByGenrePagination()
             }
 
             override fun onSearchViewShownAnimation() {
@@ -177,9 +177,9 @@ class MovieGenreFragment : Fragment() {
         })
     }
 
-    private fun getMoviesByGenre(forceRequest: Boolean = false) {
+    private fun getMoviesByGenrePagination(forceRequest: Boolean = false) {
         lifecycleScope.launch {
-            viewModel.getMoviesByGenre(genreId = args.genreId, forceRequest = forceRequest)
+            viewModel.getMoviesByGenrePagination(genreId = args.genreId, forceRequest = forceRequest)
             viewModel.moviesList.collectLatest { pagingData ->
                 moviePagingAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
             }
