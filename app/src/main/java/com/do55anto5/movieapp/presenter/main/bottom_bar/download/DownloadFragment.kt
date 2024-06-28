@@ -22,6 +22,7 @@ import com.do55anto5.movieapp.presenter.main.bottom_bar.download.adapter.Downloa
 import com.do55anto5.movieapp.util.calculateFileSize
 import com.do55anto5.movieapp.util.calculateMovieTime
 import com.do55anto5.movieapp.util.initToolbar
+import com.do55anto5.movieapp.util.onNavigate
 import com.ferfalk.simplesearchview.SimpleSearchView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -107,7 +108,7 @@ class DownloadFragment : Fragment() {
             detailsClickListener = { movieId ->
                 movieId?.let {
                     val action = MainGraphDirections.actionGlobalMovieDetailsFragment(movieId)
-                    findNavController().navigate(action)
+                    findNavController().onNavigate(action)
                 }
             },
             deleteClickListener = { movie ->

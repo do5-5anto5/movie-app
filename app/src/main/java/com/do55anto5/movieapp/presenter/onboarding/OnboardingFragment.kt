@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentOnboardingBinding
+import com.do55anto5.movieapp.util.onNavigate
 
 class OnboardingFragment : Fragment() {
 
@@ -30,7 +31,7 @@ class OnboardingFragment : Fragment() {
 
     private fun initListeners() {
         binding.btnStart.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingFragment_to_authentication)
+            findNavController().onNavigate(R.id.action_onboardingFragment_to_authentication)
         }
     }
 

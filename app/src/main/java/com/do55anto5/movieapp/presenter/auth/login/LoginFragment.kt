@@ -18,6 +18,7 @@ import com.do55anto5.movieapp.util.StateView
 import com.do55anto5.movieapp.util.hideKeyboard
 import com.do55anto5.movieapp.util.initToolbar
 import com.do55anto5.movieapp.util.isEmailValid
+import com.do55anto5.movieapp.util.onNavigate
 import com.do55anto5.movieapp.util.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,7 +50,7 @@ class LoginFragment : Fragment() {
         binding.btnLogin.setOnClickListener { validateData() }
 
         binding.btnForgotPassword.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_forgotFragment)
+            findNavController().onNavigate(R.id.action_loginFragment_to_forgotFragment)
         }
 
         Glide

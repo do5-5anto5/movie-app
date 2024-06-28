@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentAuthHomeBinding
+import com.do55anto5.movieapp.util.onNavigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,10 +33,10 @@ class AuthHomeFragment : Fragment() {
 
     private fun initListeners() {
         binding.btnLoginWithPassword.setOnClickListener {
-            findNavController().navigate(R.id.action_authHomeFragment_to_loginFragment)
+            findNavController().onNavigate(R.id.action_authHomeFragment_to_loginFragment)
         }
         binding.btnRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_authHomeFragment_to_registerFragment)
+            findNavController().onNavigate(R.id.action_authHomeFragment_to_registerFragment)
         }
     }
 
