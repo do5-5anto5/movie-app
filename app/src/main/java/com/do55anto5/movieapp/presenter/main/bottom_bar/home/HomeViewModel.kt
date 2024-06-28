@@ -2,6 +2,7 @@ package com.do55anto5.movieapp.presenter.main.bottom_bar.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import com.do55anto5.movieapp.data.mapper.toDomain
 import com.do55anto5.movieapp.data.mapper.toPresentation
 import com.do55anto5.movieapp.domain.usecase.movie.GetGenresUseCase
 import com.do55anto5.movieapp.domain.usecase.movie.GetMoviesByGenreUseCase
@@ -15,7 +16,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getGenresUseCase: GetGenresUseCase,
     private val getMoviesByGenreUseCase: GetMoviesByGenreUseCase
-): ViewModel() {
+) : ViewModel() {
 
     fun getGenres() = liveData(Dispatchers.IO) {
         try {
@@ -42,11 +43,9 @@ class HomeViewModel @Inject constructor(
 
             emit(StateView.Loading())
 
-            val movies = getMoviesByGenreUseCase.invoke(
-                genreId = genreId
-            )
+            val movies = getMoviesByGenreUseCase(genreId = genreId)
 
-            emit(StateView.Success(movies))
+            emit(StateView.Success(movies.map { it.toDomain() }))
 
         } catch (e: HttpException) {
             e.printStackTrace()
