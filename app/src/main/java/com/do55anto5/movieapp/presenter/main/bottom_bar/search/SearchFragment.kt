@@ -75,6 +75,8 @@ class SearchFragment : Fragment() {
                         binding.shimmer.stopShimmer()
                         binding.shimmer.isVisible = false
                         binding.recyclerMovies.isVisible = true
+
+                        emptyState(moviePagingAdapter.itemCount == 0)
                     }
 
                     is LoadState.Error -> {
@@ -139,6 +141,11 @@ class SearchFragment : Fragment() {
                 moviePagingAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
             }
         }
+    }
+
+    private fun emptyState(empty: Boolean) {
+        binding.recyclerMovies.isVisible = !empty
+        binding.layoutEmpty.isVisible = empty
     }
 
     override fun onDestroyView() {
