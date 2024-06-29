@@ -15,7 +15,6 @@ import com.do55anto5.movieapp.domain.model.Genre
 import com.do55anto5.movieapp.domain.model.Movie
 import com.do55anto5.movieapp.domain.model.MovieReview
 import com.do55anto5.movieapp.domain.model.Person
-import com.do55anto5.movieapp.presenter.model.GenrePresentation
 
 fun GenreResponse.toDomain(): Genre {
     return Genre(
@@ -42,14 +41,6 @@ fun MovieResponse.toDomain(): Movie {
         voteCount = voteCount,
         runtime = runtime,
         productionCountries = productionCountries?.map { it.toDomain() }
-    )
-}
-
-fun Genre.toPresentation(): GenrePresentation {
-    return GenrePresentation(
-        id = id,
-        name = name,
-        movies = emptyList()
     )
 }
 
