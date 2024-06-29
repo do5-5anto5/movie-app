@@ -13,13 +13,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
-import br.com.hellodev.movieapp.presenter.main.moviegenre.adapter.LoadStatePagingAdapter
+import com.do55anto5.movieapp.presenter.main.movie_genre.adapter.LoadStatePagingAdapter
 import com.do55anto5.movieapp.MainGraphDirections
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentSearchBinding
-import com.do55anto5.movieapp.presenter.main.bottom_bar.home.adapter.MovieAdapter
 import com.do55anto5.movieapp.presenter.main.movie_genre.adapter.MoviePagingAdapter
-import com.do55anto5.movieapp.util.StateView
 import com.do55anto5.movieapp.util.hideKeyboard
 import com.do55anto5.movieapp.util.onNavigate
 import dagger.hilt.android.AndroidEntryPoint
@@ -141,11 +139,6 @@ class SearchFragment : Fragment() {
                 moviePagingAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
             }
         }
-    }
-
-    private fun emptyState(empty: Boolean) {
-        binding.recyclerMovies.isVisible = !empty
-        binding.layoutEmpty.isVisible = empty
     }
 
     override fun onDestroyView() {
