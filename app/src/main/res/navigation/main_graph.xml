@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@id/menu_home">
+    app:startDestination="@id/splashFragment2">
 
     <fragment
         android:id="@+id/menu_home"
@@ -56,4 +56,15 @@
             app:argType="integer" />
     </fragment>
     <action android:id="@+id/action_global_movieDetailsFragment" app:destination="@id/movieDetailsFragment" />
+    <fragment
+        android:id="@+id/splashFragment2"
+        android:name="com.do55anto5.movieapp.presenter.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment2_to_menu_home"
+            app:destination="@id/menu_home"
+            app:popUpTo="@id/splashFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

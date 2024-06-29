@@ -75,7 +75,7 @@
 
            <androidx.recyclerview.widget.RecyclerView
                android:id="@+id/recycler_movies"
-               android:layout_width="match_parent"
+               android:layout_width="0dp"
                android:layout_height="0dp"
                android:clipToPadding="false"
                android:padding="8dp"
@@ -98,7 +98,8 @@
                app:layout_constraintEnd_toEndOf="parent"
                app:layout_constraintHorizontal_bias="0.5"
                app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="@+id/recycler_movies">
+               app:layout_constraintTop_toTopOf="parent"
+               tools:visibility="visible">
 
                <ImageView
                    android:layout_width="wrap_content"

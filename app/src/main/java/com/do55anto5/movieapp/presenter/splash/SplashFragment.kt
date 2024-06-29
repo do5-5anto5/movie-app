@@ -6,10 +6,12 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentSplashBinding
+import com.do55anto5.movieapp.util.FirebaseHelper
 import com.do55anto5.movieapp.util.onNavigate
 
 class SplashFragment : Fragment() {
@@ -33,11 +35,20 @@ class SplashFragment : Fragment() {
     }
 
     private fun initSplashScreen() {
-        Handler(Looper.getMainLooper()).postDelayed({
-            run {
-                findNavController().onNavigate(R.id.action_splashFragment_to_onboardingFragment)
-            }
-        }, 3000)
+        if(!FirebaseHelper.isAuthenticated()) {
+            Handler(Looper.getMainLooper()).postDelayed({
+                run {
+                    findNavController().onNavigate(R.id.action_splashFragment_to_onboardingFragment)
+                }
+            }, 3000)
+        } else {
+            binding.animationView.isVisible = false
+            Handler(Looper.getMainLooper()).postDelayed({
+                run {
+                    findNavController().onNavigate(R.id.action_splashFragment2_to_menu_home)
+                }
+            }, 1200)
+        }
     }
 
     override fun onDestroyView() {
