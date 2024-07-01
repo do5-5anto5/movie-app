@@ -2,16 +2,17 @@ package com.do55anto5.movieapp.presenter.main.bottom_bar.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.FragmentProfileBinding
 import com.do55anto5.movieapp.domain.model.MenuProfile
 import com.do55anto5.movieapp.domain.model.MenuProfileType
 import com.do55anto5.movieapp.presenter.main.bottom_bar.profile.adapter.ProfileMenuAdapter
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ProfileFragment : Fragment() {
 
@@ -36,6 +37,7 @@ class ProfileFragment : Fragment() {
         configData()
 
         initRecyclerView()
+
     }
 
     private fun initRecyclerView() {
@@ -46,13 +48,14 @@ class ProfileFragment : Fragment() {
             onClick = { type ->
                 when (type) {
                     MenuProfileType.PROFILE -> {
-
+                        findNavController().navigate(R.id.action_menu_profile_to_editProfileFragment)
                     }
                     MenuProfileType.NOTIFICATION -> {
 
                     }
                     MenuProfileType.DOWNLOADS -> {
-
+                        val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.bottom_bar)
+                        bottomNavigation?.selectedItemId = R.id.menu_download
                     }
                     MenuProfileType.SECURITY -> {
 
