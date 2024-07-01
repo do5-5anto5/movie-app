@@ -8,7 +8,7 @@ data class MenuProfile(
     val type: MenuProfileType
 ) {
     companion object {
-        val profile = listOf(
+        val items = listOf(
             MenuProfile(
                 text = R.string.text_edit_profile_profile_fragment,
                 icon = R.drawable.ic_profile,
