@@ -1,5 +1,6 @@
 package com.do55anto5.movieapp.presenter.main.bottom_bar.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +9,17 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.do55anto5.movieapp.R
+import com.do55anto5.movieapp.databinding.BottomSheetLogoutBinding
 import com.do55anto5.movieapp.databinding.FragmentProfileBinding
 import com.do55anto5.movieapp.domain.model.MenuProfile
 import com.do55anto5.movieapp.domain.model.MenuProfileType
+import com.do55anto5.movieapp.presenter.auth.activity.AuthActivity
+import com.do55anto5.movieapp.presenter.auth.activity.AuthActivity.Companion.AUTHENTICATION_PARAMETER
+import com.do55anto5.movieapp.presenter.auth.enums.AuthenticationDestinations
 import com.do55anto5.movieapp.presenter.main.bottom_bar.profile.adapter.ProfileMenuAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragment : Fragment() {
 
@@ -73,7 +80,7 @@ class ProfileFragment : Fragment() {
 
                     }
                     MenuProfileType.LOGOUT -> {
-
+                        showBottomSheetLogout()
                     }
                 }
             }
@@ -94,6 +101,33 @@ class ProfileFragment : Fragment() {
             txtProfileName.text = "Mock Name"
             txtProfileEmail.text = "mock@email.com"
         }
+    }
+
+    private fun showBottomSheetLogout() {
+        val bottomSheetDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
+        val bottomSheetBinding = BottomSheetLogoutBinding.inflate(
+            layoutInflater, null, false
+        )
+
+        bottomSheetBinding.btnCancel.setOnClickListener {
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetBinding.btnConfirm.setOnClickListener {
+            logout()
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.setContentView(bottomSheetBinding.root)
+        bottomSheetDialog.show()
+    }
+
+    private fun logout() {
+        FirebaseAuth.getInstance().signOut()
+        activity?.finish()
+        val intent = Intent(requireContext(), AuthActivity::class.java)
+        intent.putExtra(AUTHENTICATION_PARAMETER, AuthenticationDestinations.LOGIN_SCREEN)
+        startActivity(intent)
     }
 
     override fun onDestroyView() {
