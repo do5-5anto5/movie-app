@@ -124,6 +124,12 @@
     <string name="text_edit_country_edit_profile_fragment">país</string>
     <string name="button_text_update_edit_profile_fragment">Atualizar</string>
 
+    <!--    BottomSheetLogout-->
+    <string name="title_logout_bottom_sheet_logout">Sair</string>
+    <string name="text_confirm_logout_bottom_sheet_logout">Tem certeza que deseja sair?</string>
+    <string name="text_button_logout_bottom_sheet_logout">Sair</string>
+    <string name="text_button_cancel_bottom_sheet_logout">Cancelar</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
