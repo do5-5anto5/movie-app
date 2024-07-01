@@ -14,6 +14,8 @@ import com.do55anto5.movieapp.databinding.FragmentProfileBinding
 import com.do55anto5.movieapp.domain.model.MenuProfile
 import com.do55anto5.movieapp.domain.model.MenuProfileType
 import com.do55anto5.movieapp.presenter.auth.activity.AuthActivity
+import com.do55anto5.movieapp.presenter.auth.activity.AuthActivity.Companion.AUTHENTICATION_PARAMETER
+import com.do55anto5.movieapp.presenter.auth.enums.AuthenticationDestinations
 import com.do55anto5.movieapp.presenter.main.bottom_bar.profile.adapter.ProfileMenuAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -124,6 +126,7 @@ class ProfileFragment : Fragment() {
         FirebaseAuth.getInstance().signOut()
         activity?.finish()
         val intent = Intent(requireContext(), AuthActivity::class.java)
+        intent.putExtra(AUTHENTICATION_PARAMETER, AuthenticationDestinations.LOGIN_SCREEN)
         startActivity(intent)
     }
 
