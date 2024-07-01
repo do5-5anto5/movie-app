@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.ItemUserProfileBinding
 import com.do55anto5.movieapp.domain.model.MenuProfile
 import com.do55anto5.movieapp.domain.model.MenuProfileType
@@ -33,7 +34,12 @@ class ProfileMenuAdapter(
         val item = items[position]
 
        with(holder) {
-           binding.txtItemProfile.text = context.getString(item.text)
+           binding.txtItemProfile.apply {
+               text = context.getString(item.text)
+               if (item.type == MenuProfileType.LOGOUT) {
+                   setTextColor(ContextCompat.getColor(context, R.color.color_default))
+               }
+           }
            binding.imgItemProfile.setImageDrawable(
                ContextCompat.getDrawable(context, item.icon)
            )

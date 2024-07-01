@@ -2,20 +2,17 @@ package com.do55anto5.movieapp.presenter.main.bottom_bar.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.do55anto5.movieapp.R
-import com.do55anto5.movieapp.databinding.FragmentMovieDetailsBinding
 import com.do55anto5.movieapp.databinding.FragmentProfileBinding
 import com.do55anto5.movieapp.domain.model.MenuProfile
 import com.do55anto5.movieapp.domain.model.MenuProfileType
 import com.do55anto5.movieapp.presenter.main.bottom_bar.profile.adapter.ProfileMenuAdapter
-import com.do55anto5.movieapp.presenter.main.movie_details.adapter.CommentsAdapter
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
@@ -80,6 +77,7 @@ class ProfileFragment : Fragment() {
         )
 
         with(binding.rvItems) {
+            setHasFixedSize(true)
             adapter = mAdapter
         }
     }
