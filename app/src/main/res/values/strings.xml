@@ -9,7 +9,9 @@
     <!--Generics-->
     <string name="text_name_empty">Digite seu nome</string>
     <string name="text_email_empty">Digite seu e-mail</string>
-    <string name="text_phone_empty">Digite seu telefone</string>
+    <string name="text_phone_empty">Digite seu número de celular</string>
+    <string name="text_gender_empty">Digite seu gênero</string>
+    <string name="text_country_empty">Digite seu país</string>
     <string name="text_phone_invalid">Digite um telefone válido</string>
     <string name="text_email_invalid">Digite um email válido</string>
     <string name="text_password_empty">Digite sua senha</string>
@@ -117,10 +119,10 @@
     <!--    EditProfileFragment-->
     <string name="title_edit_profile_fragment">Editar perfil</string>
     <string name="text_edit_first_name_edit_profile_fragment">nome</string>
-    <string name="text_edit_last_name_edit_profile_fragment">sobrenome</string>
+    <string name="text_edit_surname_edit_profile_fragment">sobrenome</string>
     <string name="text_edit_email_edit_profile_fragment">email</string>
     <string name="text_edit_phone_number_edit_profile_fragment">celular</string>
-    <string name="text_edit_gender_edit_profile_fragment">celular</string>
+    <string name="text_edit_gender_edit_profile_fragment">gênero</string>
     <string name="text_edit_country_edit_profile_fragment">país</string>
     <string name="button_text_update_edit_profile_fragment">Atualizar</string>
 
