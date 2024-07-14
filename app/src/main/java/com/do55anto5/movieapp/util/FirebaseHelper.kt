@@ -32,6 +32,9 @@ class FirebaseHelper {
                 error.contains("The supplied auth credential is incorrect, malformed or has expired.") -> {
                     R.string.invalid_credentials
                 }
+                error.contains("User not found") -> {
+                    R.string.user_not_found
+                }
                 else -> {
                     R.string.error_generic
                 }

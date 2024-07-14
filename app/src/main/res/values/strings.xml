@@ -32,6 +32,7 @@
     <string name="invalid_password_register_fragment">Senha inválida, tente novamente.</string>
     <string name="email_in_use_register_fragment">Este e-mail já está em uso.</string>
     <string name="strong_password_register_fragment">Insira uma senha mais forte.</string>
+    <string name="user_not_found">Usuário/dados não cadastrado(s)</string>
 
     <!--Onboarding-->
     <string name="onboarding_fragment_button_start">Iniciar</string>
@@ -126,6 +127,7 @@
     <string name="text_edit_country_edit_profile_fragment">país</string>
     <string name="button_text_update_edit_profile_fragment">Atualizar</string>
     <string name="snackbar_text_update_edit_profile_fragment">Perfil atualizado</string>
+    <string name="snackbar_text_charged_edit_profile_fragment">Perfil carregado</string>
 
     <!--    BottomSheetLogout-->
     <string name="title_logout_bottom_sheet_logout">Sair</string>

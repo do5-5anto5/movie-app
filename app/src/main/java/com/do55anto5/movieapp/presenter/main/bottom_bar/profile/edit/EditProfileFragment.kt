@@ -41,6 +41,8 @@ class EditProfileFragment : Fragment() {
 
         initToolbar(binding.toolbar)
 
+        getUser()
+
         initListeners()
     }
 
@@ -86,6 +88,7 @@ class EditProfileFragment : Fragment() {
         hideKeyboard()
 
         val user = User(
+            id = FirebaseHelper.getUserId(),
             firstName = name,
             surname = surname,
             phoneNumber = phoneNumber,
@@ -94,28 +97,63 @@ class EditProfileFragment : Fragment() {
             country = country
         )
 
-        update(user)
+        updateUser(user)
 
 
     }
 
-    private fun update(user: User) {
+    private fun updateUser(user: User) {
         viewModel.update(user).observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {
                     showLoading(true)
                 }
+
                 is StateView.Success -> {
                     showLoading(false)
                     showSnackBar(R.string.snackbar_text_update_edit_profile_fragment)
                 }
+
                 is StateView.Error -> {
                     showLoading(false)
                     showSnackBar(
-                        FirebaseHelper.validError(stateView.message ?: ""))
+                        FirebaseHelper.validError(stateView.message ?: "")
+                    )
                 }
             }
         }
+    }
+
+    private fun getUser() {
+        viewModel.get().observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {
+                    showLoading(true)
+                }
+
+                is StateView.Success -> {
+                    showLoading(false)
+                    stateView.data?.let { configData(user = it) }
+                    showSnackBar(R.string.snackbar_text_charged_edit_profile_fragment)
+                }
+
+                is StateView.Error -> {
+                    showLoading(false)
+                    showSnackBar(
+                        FirebaseHelper.validError(stateView.message ?: "")
+                    )
+                }
+            }
+        }
+    }
+
+    private fun configData(user: User) {
+        binding.editNameFirstName.setText(user.firstName)
+        binding.editSurname.setText(user.surname)
+        binding.editEmail.setText(user.email)
+        binding.editPhoneNumber.setText(user.phoneNumber)
+        binding.editGender.setText(user.gender)
+        binding.editCountry.setText(user.country)
     }
 
     private fun showLoading(isLoading: Boolean) {
