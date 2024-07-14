@@ -8,7 +8,7 @@ class UserUpdateUseCase @Inject constructor(
     private val userRepository: UserRepository
 ) {
 
-    suspend fun invoke(user: User) {
+    suspend operator fun invoke(user: User) {
         userRepository.update(user)
     }
 
