@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.DialogDownloadingBinding
 import com.do55anto5.movieapp.databinding.FragmentMovieDetailsBinding
-import com.do55anto5.movieapp.domain.model.Movie
+import com.do55anto5.movieapp.domain.model.movie.Movie
 import com.do55anto5.movieapp.presenter.main.movie_details.similar.SimilarFragment
 import com.do55anto5.movieapp.presenter.main.movie_details.trailers.TrailersFragment
 import com.do55anto5.movieapp.presenter.main.movie_details.adapter.CastAdapter

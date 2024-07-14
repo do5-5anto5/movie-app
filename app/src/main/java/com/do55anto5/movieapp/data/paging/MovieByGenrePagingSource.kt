@@ -3,7 +3,7 @@ package com.do55anto5.movieapp.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.do55anto5.movieapp.data.api.ServiceApi
-import com.do55anto5.movieapp.data.model.MovieResponse
+import com.do55anto5.movieapp.data.model.movie.MovieResponse
 import com.do55anto5.movieapp.util.Constants.Paging.DEFAULT_PAGE_INDEX
 
 class MovieByGenrePagingSource(

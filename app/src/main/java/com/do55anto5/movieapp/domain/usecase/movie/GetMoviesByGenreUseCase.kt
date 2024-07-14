@@ -1,6 +1,6 @@
 package com.do55anto5.movieapp.domain.usecase.movie
 
-import com.do55anto5.movieapp.data.model.MovieResponse
+import com.do55anto5.movieapp.data.model.movie.MovieResponse
 import com.do55anto5.movieapp.domain.repository.movie.MovieRepository
 import javax.inject.Inject
 

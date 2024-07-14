@@ -1,8 +1,8 @@
 package com.do55anto5.movieapp.domain.repository.movie
 
-import com.do55anto5.movieapp.data.model.CreditsResponse
-import com.do55anto5.movieapp.data.model.MovieResponse
-import com.do55anto5.movieapp.data.model.MovieReviewResponse
+import com.do55anto5.movieapp.data.model.movie.CreditsResponse
+import com.do55anto5.movieapp.data.model.movie.MovieResponse
+import com.do55anto5.movieapp.data.model.movie.MovieReviewResponse
 
 interface MovieDetailsRepository {
 

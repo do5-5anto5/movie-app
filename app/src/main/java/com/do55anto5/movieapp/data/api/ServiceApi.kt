@@ -1,10 +1,10 @@
 package com.do55anto5.movieapp.data.api
 
-import com.do55anto5.movieapp.data.model.CreditsResponse
-import com.do55anto5.movieapp.data.model.GenresResponse
-import com.do55anto5.movieapp.data.model.MovieResponse
-import com.do55anto5.movieapp.data.model.MovieReviewResponse
-import com.do55anto5.movieapp.data.model.RemoteBasePagination
+import com.do55anto5.movieapp.data.model.movie.CreditsResponse
+import com.do55anto5.movieapp.data.model.movie.GenresResponse
+import com.do55anto5.movieapp.data.model.movie.MovieResponse
+import com.do55anto5.movieapp.data.model.movie.MovieReviewResponse
+import com.do55anto5.movieapp.data.model.movie.RemoteBasePagination
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

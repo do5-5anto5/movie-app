@@ -17,7 +17,7 @@ import com.do55anto5.movieapp.MainGraphDirections
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.BottomSheetDeleteMovieBinding
 import com.do55anto5.movieapp.databinding.FragmentDownloadBinding
-import com.do55anto5.movieapp.domain.model.Movie
+import com.do55anto5.movieapp.domain.model.movie.Movie
 import com.do55anto5.movieapp.presenter.main.bottom_bar.download.adapter.DownloadMovieAdapter
 import com.do55anto5.movieapp.util.calculateFileSize
 import com.do55anto5.movieapp.util.calculateMovieTime

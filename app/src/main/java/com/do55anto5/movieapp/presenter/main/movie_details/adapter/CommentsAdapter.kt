@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.ItemCommentReviewBinding
-import com.do55anto5.movieapp.domain.model.MovieReview
+import com.do55anto5.movieapp.domain.model.movie.MovieReview
 import com.do55anto5.movieapp.util.formatCommentDate
 
 class CommentsAdapter : ListAdapter<MovieReview, CommentsAdapter.MyViewHolder>(DIFF_CALLBACK) {

@@ -2,9 +2,9 @@ package com.do55anto5.movieapp.data.repository.movie
 
 import androidx.paging.PagingSource
 import com.do55anto5.movieapp.data.api.ServiceApi
-import com.do55anto5.movieapp.data.model.GenresResponse
-import com.do55anto5.movieapp.data.model.MovieResponse
-import com.do55anto5.movieapp.data.model.RemoteBasePagination
+import com.do55anto5.movieapp.data.model.movie.GenresResponse
+import com.do55anto5.movieapp.data.model.movie.MovieResponse
+import com.do55anto5.movieapp.data.model.movie.RemoteBasePagination
 import com.do55anto5.movieapp.data.paging.MovieByGenrePagingSource
 import com.do55anto5.movieapp.data.paging.SearchMoviePagingSource
 import com.do55anto5.movieapp.domain.repository.movie.MovieRepository

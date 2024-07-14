@@ -1,20 +1,20 @@
 package com.do55anto5.movieapp.data.mapper
 
 import com.do55anto5.movieapp.data.local.entity.MovieEntity
-import com.do55anto5.movieapp.data.model.AuthorDetailsResponse
-import com.do55anto5.movieapp.data.model.CountryResponse
-import com.do55anto5.movieapp.data.model.CreditsResponse
-import com.do55anto5.movieapp.data.model.GenreResponse
-import com.do55anto5.movieapp.data.model.MovieResponse
-import com.do55anto5.movieapp.data.model.MovieReviewResponse
-import com.do55anto5.movieapp.data.model.PersonResponse
-import com.do55anto5.movieapp.domain.model.AuthorDetails
-import com.do55anto5.movieapp.domain.model.Country
-import com.do55anto5.movieapp.domain.model.Credits
-import com.do55anto5.movieapp.domain.model.Genre
-import com.do55anto5.movieapp.domain.model.Movie
-import com.do55anto5.movieapp.domain.model.MovieReview
-import com.do55anto5.movieapp.domain.model.Person
+import com.do55anto5.movieapp.data.model.movie.AuthorDetailsResponse
+import com.do55anto5.movieapp.data.model.movie.CountryResponse
+import com.do55anto5.movieapp.data.model.movie.CreditsResponse
+import com.do55anto5.movieapp.data.model.movie.GenreResponse
+import com.do55anto5.movieapp.data.model.movie.MovieResponse
+import com.do55anto5.movieapp.data.model.movie.MovieReviewResponse
+import com.do55anto5.movieapp.data.model.movie.PersonResponse
+import com.do55anto5.movieapp.domain.model.movie.AuthorDetails
+import com.do55anto5.movieapp.domain.model.movie.Country
+import com.do55anto5.movieapp.domain.model.movie.Credits
+import com.do55anto5.movieapp.domain.model.movie.Genre
+import com.do55anto5.movieapp.domain.model.movie.Movie
+import com.do55anto5.movieapp.domain.model.movie.MovieReview
+import com.do55anto5.movieapp.domain.model.movie.Person
 
 fun GenreResponse.toDomain(): Genre {
     return Genre(
