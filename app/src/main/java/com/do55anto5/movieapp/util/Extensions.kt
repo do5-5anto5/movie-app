@@ -20,6 +20,9 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import kotlinx.coroutines.CancellableContinuation
+import kotlin.coroutines.Continuation
+import kotlin.coroutines.resume
 
 fun Fragment.initToolbar(toolbar: Toolbar, showBackIcon: Boolean = true, lightIcon: Boolean = false) {
     (activity as AppCompatActivity).setSupportActionBar(toolbar)
@@ -149,4 +152,12 @@ inline fun <reified T : Serializable> Intent.getSerializableCompat(key: String):
     )
 
     else -> @Suppress("DEPRECATION") getSerializableExtra(key) as? T
+}
+
+inline fun <T> Continuation<T>.safeResume(value: T) {
+    if (this is CancellableContinuation) {
+        if (isActive) {
+            resume(value)
+        }
+    } else throw Exception("Must use suspendCancellableCoroutine instead of suspendCoroutine")
 }
