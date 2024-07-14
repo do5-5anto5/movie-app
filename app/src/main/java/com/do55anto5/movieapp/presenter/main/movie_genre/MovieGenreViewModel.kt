@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.do55anto5.movieapp.domain.model.Movie
+import com.do55anto5.movieapp.domain.model.movie.Movie
 import com.do55anto5.movieapp.domain.usecase.movie.GetMoviesByGenrePaginationUseCase
 import com.do55anto5.movieapp.domain.usecase.movie.SearchMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

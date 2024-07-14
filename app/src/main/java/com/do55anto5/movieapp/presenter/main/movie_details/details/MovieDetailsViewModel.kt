@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.do55anto5.movieapp.domain.local.usecase.InsertMovieUseCase
-import com.do55anto5.movieapp.domain.model.Movie
+import com.do55anto5.movieapp.domain.model.movie.Movie
 import com.do55anto5.movieapp.domain.usecase.movie.GetCreditsUseCase
 import com.do55anto5.movieapp.domain.usecase.movie.GetMovieDetailsUseCase
 import com.do55anto5.movieapp.util.StateView

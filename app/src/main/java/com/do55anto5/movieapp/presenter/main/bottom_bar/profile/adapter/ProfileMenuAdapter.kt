@@ -7,8 +7,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.ItemUserProfileBinding
-import com.do55anto5.movieapp.domain.model.MenuProfile
-import com.do55anto5.movieapp.domain.model.MenuProfileType
+import com.do55anto5.movieapp.domain.model.menu.MenuProfile
+import com.do55anto5.movieapp.domain.model.menu.MenuProfileType
 
 class ProfileMenuAdapter(
     private val items: List<MenuProfile>,

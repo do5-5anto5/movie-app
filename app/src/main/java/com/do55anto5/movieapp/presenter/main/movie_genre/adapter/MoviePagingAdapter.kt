@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.MovieGenreItemBinding
-import com.do55anto5.movieapp.domain.model.Movie
+import com.do55anto5.movieapp.domain.model.movie.Movie
 import com.do55anto5.movieapp.util.circularProgressDrawable
 
 class MoviePagingAdapter(

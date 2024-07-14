@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.do55anto5.movieapp.R
 import com.do55anto5.movieapp.databinding.BottomSheetLogoutBinding
 import com.do55anto5.movieapp.databinding.FragmentProfileBinding
-import com.do55anto5.movieapp.domain.model.MenuProfile
-import com.do55anto5.movieapp.domain.model.MenuProfileType
+import com.do55anto5.movieapp.domain.model.menu.MenuProfile
+import com.do55anto5.movieapp.domain.model.menu.MenuProfileType
 import com.do55anto5.movieapp.presenter.auth.activity.AuthActivity
 import com.do55anto5.movieapp.presenter.auth.activity.AuthActivity.Companion.AUTHENTICATION_PARAMETER
 import com.do55anto5.movieapp.presenter.auth.enums.AuthenticationDestinations

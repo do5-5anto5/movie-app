@@ -1,7 +1,7 @@
 package com.do55anto5.movieapp.domain.usecase.movie
 
 import com.do55anto5.movieapp.data.mapper.toDomain
-import com.do55anto5.movieapp.domain.model.MovieReview
+import com.do55anto5.movieapp.domain.model.movie.MovieReview
 import com.do55anto5.movieapp.domain.repository.movie.MovieDetailsRepository
 import javax.inject.Inject
 

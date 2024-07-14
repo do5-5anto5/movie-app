@@ -125,6 +125,7 @@
     <string name="text_edit_gender_edit_profile_fragment">gênero</string>
     <string name="text_edit_country_edit_profile_fragment">país</string>
     <string name="button_text_update_edit_profile_fragment">Atualizar</string>
+    <string name="snackbar_text_update_edit_profile_fragment">Perfil atualizado</string>
 
     <!--    BottomSheetLogout-->
     <string name="title_logout_bottom_sheet_logout">Sair</string>

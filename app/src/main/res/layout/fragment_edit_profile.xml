@@ -41,19 +41,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
 
             <FrameLayout
                 android:id="@+id/frameLayout"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:layout_marginTop="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginTop="24dp">
 
                 <ImageView
                     android:id="@+id/img_edit_profile"
@@ -86,12 +84,10 @@
                 style="@style/ThemeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="24dp"
                 android:hint="@string/text_edit_first_name_edit_profile_fragment"
                 android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frameLayout"
                 tools:ignore="Autofill" />
 
             <EditText
@@ -99,12 +95,10 @@
                 style="@style/ThemeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="24dp"
                 android:hint="@string/text_edit_surname_edit_profile_fragment"
                 android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_name_first_name"
                 tools:ignore="Autofill" />
 
             <EditText
@@ -112,14 +106,12 @@
                 style="@style/ThemeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="24dp"
                 android:clickable="false"
                 android:enabled="false"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/disabled"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_surname"
                 tools:ignore="Autofill"
                 tools:text="mock@email.com" />
 
@@ -128,13 +120,10 @@
                 style="@style/ThemeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="24dp"
-                android:layout_marginTop="116dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="24dp"
                 android:hint="@string/text_edit_phone_number_edit_profile_fragment"
                 android:inputType="phone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_email"
                 tools:ignore="Autofill" />
 
             <EditText
@@ -142,12 +131,10 @@
                 style="@style/ThemeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="24dp"
                 android:hint="@string/text_edit_gender_edit_profile_fragment"
-                android:inputType="phone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_phone_number"
+                android:inputType="textPersonName"
                 tools:ignore="Autofill" />
 
 
@@ -156,31 +143,34 @@
                 style="@style/ThemeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="24dp"
                 android:hint="@string/text_edit_country_edit_profile_fragment"
-                android:inputType="phone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_gender"
+                android:inputType="textPersonName"
                 tools:ignore="Autofill" />
+
+            <ImageView
+                android:id="@+id/progress_loading"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="24dp"
+                android:visibility="gone"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/loading"
+                tools:visibility="visible" />
 
             <Button
                 android:id="@+id/btn_update"
                 style="@style/ThemePrimaryButton"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginVertical="32dp"
+                android:layout_margin="24dp"
                 android:text="@string/button_text_update_edit_profile_fragment"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edit_country" />
+                android:textColor="@color/white" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
     </ScrollView>
 

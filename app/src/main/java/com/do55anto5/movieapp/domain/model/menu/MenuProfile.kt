@@ -1,4 +1,4 @@
-package com.do55anto5.movieapp.domain.model
+package com.do55anto5.movieapp.domain.model.menu
 
 import com.do55anto5.movieapp.R
 
