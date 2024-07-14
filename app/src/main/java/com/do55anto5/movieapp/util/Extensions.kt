@@ -153,11 +153,3 @@ inline fun <reified T : Serializable> Intent.getSerializableCompat(key: String):
 
     else -> @Suppress("DEPRECATION") getSerializableExtra(key) as? T
 }
-
-inline fun <T> Continuation<T>.safeResume(value: T) {
-    if (this is CancellableContinuation) {
-        if (isActive) {
-            resume(value)
-        }
-    } else throw Exception("Must use suspendCancellableCoroutine instead of suspendCoroutine")
-}
