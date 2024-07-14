@@ -3,13 +3,9 @@ package com.do55anto5.movieapp.data.repository.user
 import com.do55anto5.movieapp.domain.model.user.User
 import com.do55anto5.movieapp.domain.repository.user.UserRepository
 import com.do55anto5.movieapp.util.FirebaseHelper
-import com.do55anto5.movieapp.util.safeResume
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import kotlinx.coroutines.suspendCancellableCoroutine
 import javax.inject.Inject
+import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 class UserRepositoryImpl @Inject constructor(
@@ -35,24 +31,25 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun get(): User {
-        return suspendCancellableCoroutine { continuation ->
+        return suspendCoroutine { continuation ->
             profileRef
                 .child(FirebaseHelper.getUserId())
-                .addValueEventListener(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val user = snapshot.getValue(User::class.java)
-                        user?.let {
-                        continuation.safeResume(it)
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val user = task.result?.getValue(User::class.java)
+                        if (user != null) {
+                            continuation.resumeWith(Result.success(user))
+                        } else {
+                                continuation.resumeWithException(Exception("User not found"))
                         }
+                    } else {
+                        task.exception?.let { continuation.resumeWithException(it) }
                     }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        error.toException().let {
-                            continuation.resumeWith(Result.failure(it))
-                        }
-                    }
-
-                })
+                }
+                .addOnFailureListener {
+                    continuation.resumeWithException(it)
+                }
         }
     }
 
