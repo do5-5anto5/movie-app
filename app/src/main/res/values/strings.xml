@@ -32,6 +32,7 @@
     <string name="invalid_password_register_fragment">Senha inválida, tente novamente.</string>
     <string name="email_in_use_register_fragment">Este e-mail já está em uso.</string>
     <string name="strong_password_register_fragment">Insira uma senha mais forte.</string>
+    <string name="user_not_found">Usuário/dados não cadastrado(s)</string>
 
     <!--Onboarding-->
     <string name="onboarding_fragment_button_start">Iniciar</string>
