@@ -20,9 +20,6 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
-import kotlinx.coroutines.CancellableContinuation
-import kotlin.coroutines.Continuation
-import kotlin.coroutines.resume
 
 fun Fragment.initToolbar(toolbar: Toolbar, showBackIcon: Boolean = true, lightIcon: Boolean = false) {
     (activity as AppCompatActivity).setSupportActionBar(toolbar)
